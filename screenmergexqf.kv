@@ -1,0 +1,135 @@
+<ScreenMergeXQF>:
+    name: "ScreenMergeXQF"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing:16
+        MDLabel:
+            size_hint_y:.10
+            text:"合并XQF"
+            halign: "center"
+        
+        MDBoxLayout:
+            size_hint_y:.20
+            orientation: "vertical"
+            MDRelativeLayout:
+                MDRoundFlatButton:
+                    text: "选择第1个文件"
+                    pos_hint:{"center_x": .5, "center_y": .5}
+                    on_release:app.select_xqffile('id_screenmergexqf','id_filename01')
+            MyMDTextField:
+                id:id_filename01
+                max_text_length:255
+                multiline:True
+                mode: "line"
+                imc_id:'id_im_input'
+                imc_scr_id:'id_screenmergexqf'
+
+        MDBoxLayout:
+            size_hint_y:.20
+            orientation: "vertical"
+            MDRelativeLayout:
+                MDRoundFlatButton:
+                    text: "选择第2个文件"
+                    pos_hint:{"center_x": .5, "center_y": .5}
+                    on_release:app.select_xqffile('id_screenmergexqf','id_filename02')
+            MyMDTextField:
+                id:id_filename02
+                max_text_length:255
+                multiline:True
+                mode: "line"
+                imc_id:'id_im_input'
+                imc_scr_id:'id_screenmergexqf'
+        
+        #MDBoxLayout:
+        #    size_hint_y:.10
+        #    orientation: "vertical"
+        #    MDRelativeLayout:
+        #        MDRoundFlatButton:
+        #            text: "选择第3个文件"
+        #            pos_hint:{"center_x": .5, "center_y": .5}
+        #            on_release:app.select_xqffile('id_screenmergexqf','id_filename03')
+        #    MyMDTextField:
+        #        id:id_filename03
+        #        max_text_length:255
+        #        multiline:True
+        #        mode: "line"
+        #        imc_id:'id_im_input'
+        #        imc_scr_id:'id_screenmergexqf'        
+        
+        
+        MDBoxLayout:
+            size_hint_y:.25
+            orientation: "vertical"
+            MDBoxLayout:
+                size_hint_y:.70
+                orientation: "vertical"
+                MDBoxLayout:
+                    size_hint_y:.3
+                    orientation: "horizontal"
+                    MDLabel:
+                        size_hint_x:.60
+                        text:"合并到路径:"
+                    MDRoundFlatButton:
+                        size_hint_x:.15
+                        text: "浏览"
+                        theme_text_color: "Custom"
+                        text_color: "orange"
+                        on_release:app.select_savepath('id_screenmergexqf','id_filepath')
+                    MDBoxLayout:
+                        #占位
+                MyMDTextField:
+                    id:id_filepath
+                    size_hint_y:.7
+                    max_text_length:255
+                    multiline:True
+                    mode: "line"
+                    imc_id:'id_im_input'
+                    imc_scr_id:'id_screenmergexqf'
+                
+            MDBoxLayout:
+                size_hint_y:.30
+                MDLabel:
+                    size_hint_x:.15
+                    text:"文件名:"
+                MyMDTextField:
+                    id:id_filename
+                    size_hint_x:.85
+                    max_text_length:255
+                    multiline:False
+                    mode: "line"
+                    imc_id:'id_im_input'
+                    imc_scr_id:'id_screenmergexqf'
+
+        MDBoxLayout:
+            size_hint_y:.10
+            orientation: "horizontal"
+            MDRelativeLayout:
+                MDRectangleFlatButton:
+                    id:id_savebtn
+                    pos_hint:{"center_x": .25, "center_y": .5}
+                    text: "开始合并"
+                    theme_text_color: "Custom"
+                    text_color: "orange"
+                    on_release:app.generate_merge_tree()
+                MDRectangleFlatButton:
+                    pos_hint:{"center_x": .75, "center_y": .5}
+                    text: "取消"
+                    on_release:app.edit_situation_cancle()
+        MDBoxLayout:
+            size_hint_y:.15
+            orientation: "vertical"
+            MDProgressBar:
+                id: id_progress
+                size_hint_y:.20
+                #pos_hint: {"center_y": .6}
+                type: "determinate"#determinate indeterminate
+            MDLabel:
+                size_hint_y:.40
+                text:"***以第1个文件的开始局面为开始局面进行合并***"
+                halign: "center"
+            MDLabel:#蛋疼的windows中文输入法
+                size_hint_y:.40
+                id:id_im_input
+                text:""
+                halign: "center"

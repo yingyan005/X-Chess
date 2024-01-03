@@ -1,0 +1,103 @@
+<ScreenMain>:
+    name: "screenMain"
+
+    FitImage:
+        source: "background.png"
+
+    MDBoxLayout: 
+        orientation: "vertical"
+
+        MDBoxLayout: 
+            orientation: "vertical"
+
+            MDBoxLayout: 
+                orientation: "vertical"
+                size_hint_y:.8
+
+                MDBoxLayout: 
+                    size_hint_y:.65
+                    orientation: "vertical"
+
+                    Chessboard:#相对布局，子控件的位置基于布局
+                        id:id_chessboard
+        
+                MDBoxLayout:
+                    size_hint_y:.35
+                    orientation: "horizontal"
+
+                    MDRelativeLayout
+                        size_hint_x:.1
+                        orientation: "vertical"
+
+                        MDIconButton:
+                            icon: "format-list-bulleted-type"
+                            icon_size: "28sp"
+                            pos_hint: {'center_x': 0.5,'center_y': 0.8}
+                            #icon_size: "48sp"
+                            theme_icon_color: "Custom"
+                            icon_color: app.theme_cls.primary_color
+                            on_release:
+                                root.manager.current_heroes = ""
+                                root.manager.current = "screenMoves"
+                        MDIconButton:
+                            icon: "robot-love-outline"
+                            icon_size: "28sp"
+                            theme_icon_color: "Custom"
+                            icon_color: app.theme_cls.primary_color
+                            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            on_release:app.ai()
+                    MDBoxLayout:
+                        size_hint_x:.8
+                        size_hint_y: 1
+                        orientation: "vertical"
+                        Movesnote:
+                            id:id_movesnote
+                            size_hint_y:.9
+                            #size_hint_y: 1
+                            max_text_length:255
+                            #s设置font_size会造成PC和手机不同效果
+                            #font_size: self.height / 10
+                            #font_style:"H5"
+                            multiline: True
+                            hint_text: "意在,伏着;见招,拆招"
+                            mode: "rectangle"# fill round line rectangle
+                            imc_id:'id_movesnote_input'
+                        MDLabel:#蛋疼的windows中文输入法
+                            id:id_movesnote_input
+                            size_hint_y:.1
+                            text:""
+                            halign: "center"
+                    MDRelativeLayout
+                        size_hint_x:.1
+                        orientation: "vertical"
+
+                        MDIconButton:
+                            icon: "delete-forever"
+                            icon_size: "32sp"
+                            theme_icon_color: "Custom"
+                            icon_color: app.theme_cls.primary_color
+                            pos_hint: {'center_x': 0.5,'center_y': 0.8}
+                            on_release:app.delete_movesdlg()
+                        #MDIconButton:
+                        #    icon: "delete-restore"
+                        #    icon_size: "32sp"
+                        #    theme_icon_color: "Custom"
+                        #    icon_color: app.theme_cls.primary_color
+                        #    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                        #    on_release:app.in_the_future()
+        
+            MDBottomAppBar:
+                id:id_bottombar
+                size_hint_y:.2
+                MDTopAppBar:            
+                    type: "bottom"
+                    type_height:"small"
+                    #title: ""
+                    icon: "hand-peace"
+                    mode: "center"  #center free-center
+                    #阴影的范围
+                    elevation: 0
+                    opposite_colors: True
+                    left_action_items: [["menu", lambda x: app.menucallback(x)],["backburger",lambda x:app.previous_branch()],["arrow-left-thin-circle-outline",lambda x:app.previous_moves()]]
+                    right_action_items: [["arrow-right-thin-circle-outline",lambda x:app.next_moves()],["forwardburger",lambda x:app.next_branch()],["information-outline",lambda x:app.info()]]
+                    on_action_button: app.letsfight()

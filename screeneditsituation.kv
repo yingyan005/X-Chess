@@ -1,0 +1,88 @@
+#这种方式pyinstaller打包成exe后，会出现： Unable to import package ，so改到py中
+##:import edit_situation_clear edit_situation.edit_situation_clear
+##:import edit_situation_full edit_situation.edit_situation_full
+##:import edit_situation_cancle edit_situation.edit_situation_cancle
+
+<ScreenEditSituation>:
+    name: "screenEditSituation"
+
+    MDBoxLayout: 
+        orientation: "vertical"
+        spacing:4
+
+        Chessboard2:#相对布局，子控件的位置基于布局
+            id:id_chessboard2
+            size_hint_y:.8
+            #候选棋子放在棋盘网格的上下，so不再使用GridLayout
+
+        #MDGridLayout: 
+        #    #候选棋子集
+        #    id:id_candidate_ps
+        #    size_hint_y:.2
+        #    cols:8
+        #    rows:4
+
+            #导致程序启动变慢，so采用显示时动态创建
+            #PieceWidget2:
+            #    svg_filename:'img/rju.svg'
+            #PieceWidget2:
+            #    svg_filename:'img/rma.svg'
+            #。。。
+
+            
+        MDBoxLayout: 
+            size_hint_y:.1
+            orientation: "horizontal"
+                
+            MDCheckbox:
+                group: 'group'                    
+                active: True
+                icon_active: "check"
+                icon_inactive: "close"
+                color_active: "red"
+                color_active: "red"
+                #pos_hint: {'center_x': .125, 'center_y': .5}
+                on_active:app.next_camp = 'r'
+            MDLabel:
+                text:'红先'
+                #pos_hint: {'center_x': .15, 'center_y': .5}
+            MDCheckbox:
+                group: 'group'
+                icon_active: "check"
+                icon_inactive: "close"
+                color_active: "red"
+                color_active: "red"
+                #pos_hint: {'center_x': .625, 'center_y': .5}
+                on_active:app.next_camp = 'b'
+            MDLabel:
+                text:'黑先'
+                #pos_hint: {'center_x': .75, 'center_y': .5}
+        #MDGridLayout: 
+        #    size_hint_y:.1
+        #    cols:4
+        #    rows:1
+        #    spacing:4
+        MDRelativeLayout: 
+            size_hint_y:.1
+            #orientation: "horizontal"
+            #spacing:8
+
+            #MDRectangleFlatButton MDRoundFlatButton
+            MDRoundFlatButton
+                text: "摆满"
+                pos_hint: {"center_x": .125, "center_y": .5}
+                on_release:app.edit_situation_full()
+            MDRoundFlatButton:
+                text: "清空"
+                pos_hint: {"center_x": .375, "center_y": .5}
+                on_release:app.edit_situation_clear() 
+            MDRoundFlatButton:
+                text: "确定"
+                pos_hint: {"center_x": .625, "center_y": .5}
+                theme_text_color: "Custom"
+                text_color: "orange"
+                on_release:app.edit_situation_done()
+            MDRoundFlatButton:
+                text: "取消"
+                pos_hint: {"center_x": .875, "center_y": .5}
+                on_release:app.edit_situation_cancle()

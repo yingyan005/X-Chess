@@ -1,0 +1,149 @@
+<ScreenMoves>:
+    name: "screenMoves"
+
+    MDBoxLayout: 
+        orientation: "horizontal"
+        spacing:4
+
+        MDBoxLayout: 
+            size_hint_x:.5
+            orientation: "vertical"
+
+            MDLabel:
+                size_hint_y:.03
+                text: "招法"
+        
+            MDScrollView:
+                size_hint_y:.97
+                #id: id_chessmanualtree            
+                #do_scroll_x: True
+                #do_scroll_y: True                
+                MDList:
+                    id: id_moveslist
+                    OneLineListItem:
+                        text:'+降龙18掌'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'1  亢龙有悔'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'2  飞龙在天'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'3  见龙在田'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'4  鸿渐于陆'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'5  潜龙勿用'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'6  利涉大川'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'7  突如其来'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'8  震惊百里'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'9  或跃在渊'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'10 双龙取水'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'11 鱼跃于渊'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'12 时乘六龙'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'13 密云不雨'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'14 损则有孚'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'15 龙战于野'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'16 履霜冰至'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'17 羝羊触蕃'
+                        font_style:"Caption"
+                        divider:"Full"
+                    OneLineListItem:
+                        text:'18 神龙摆尾'
+                        font_style:"Caption"
+                        divider:"Full"
+            
+        MDBoxLayout: 
+            size_hint_x:.5
+            orientation: "vertical"
+
+            MDLabel:
+                size_hint_y:.05
+                text: "分支"
+
+            MDScrollView:
+                size_hint_y:.50
+                MDList:
+                    id: id_movesbranch
+                    OneLineListItem:
+                        text:'1 料敌机先'
+                        font_style:"Caption"
+                        divider:"Inset"
+                    OneLineListItem:
+                        text:'2 徐图进取'
+                        font_style:"Caption"
+                        divider:"Inset"
+                    OneLineListItem:
+                        text:'3 刚柔并济'
+                        font_style:"Caption"
+                        divider:"Inset"
+                
+            MyMDTextField:
+                id:id_movesnote2
+                size_hint_y: .35
+                #size_hint_x: 1
+                #font_size: self.height / 10
+                multiline: True
+                max_text_length:255
+                hint_text: "见招，拆招，彩旗飘飘"
+                #font_style:"H5"
+                mode: "line"# fill round line rectangle
+                imc_id:'id_movesnote2_input'
+                imc_scr_id:'id_screenmoves'
+            MDLabel:#蛋疼的windows中文输入法
+                size_hint_y:.05
+                id:id_movesnote2_input
+                text:""
+                halign: "center"
+            MDFillRoundFlatIconButton:
+                size_hint_y:.05
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                icon: "keyboard-return"
+                text:"返回"
+                on_release:
+                    root.manager.current_heroes = ""
+                    root.manager.current = "screenMain"

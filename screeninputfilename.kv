@@ -1,0 +1,77 @@
+#这种方式pyinstaller打包成exe后，会出现： Unable to import package ，so改到py中
+##:import saveFileXQF tree2xqf.saveFileXQF
+
+<ScreenInputFileName>:
+    name: "ScreenInputFileName"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing:4
+        MDBoxLayout:
+            size_hint_y:.2
+            orientation: "horizontal"
+            #canvas.before:
+            #    Color:
+            #        rgba:[0,1,1,1]
+            #    Rectangle:
+            #        size:[self.width,self.height]
+            #        pos:self.pos
+            MDLabel:
+                size_hint_x:.15
+                text:"路径:"
+            MyMDTextField:
+                id:id_filepath
+                size_hint_x:.7
+                max_text_length:255
+                multiline:True
+                mode: "line"# fill round line rectangle
+                imc_id:'id_path_input'
+                imc_scr_id:'id_scrinputfilename'
+            MDRoundFlatButton:
+                size_hint_x:.15
+                #center_y:self.center_y
+                text: "浏览"
+                theme_text_color: "Custom"
+                text_color: "orange"
+                on_release:app.select_savepath('id_scrinputfilename','id_filepath')
+        MDBoxLayout:
+            size_hint_y:.1
+            MDLabel:#蛋疼的windows中文输入法
+                id:id_path_input
+                text:""
+                halign: "center"
+        MDBoxLayout:
+            size_hint_y:.1
+            MDLabel:
+                size_hint_x:.15
+                text:"文件名:"
+            MyMDTextField:
+                id:id_filename
+                size_hint_x:.85
+                max_text_length:255
+                multiline:False
+                mode: "line"# fill round line rectangle
+                imc_id:'id_filename_input'
+                imc_scr_id:'id_scrinputfilename'
+        MDBoxLayout:
+            size_hint_y:.1
+            MDLabel:#蛋疼的windows中文输入法
+                id:id_filename_input
+                text:""
+                halign: "center"
+        MDRelativeLayout:
+            size_hint_y:.1
+            orientation: "horizontal"
+            MDRectangleFlatButton:
+                id:id_savebtn
+                pos_hint:{"center_x": .25, "center_y": .5}
+                text: "确定"
+                theme_text_color: "Custom"
+                text_color: "orange"
+                on_release:app.saveFileXQF()
+            MDRectangleFlatButton:
+                pos_hint:{"center_x": .75, "center_y": .5}
+                text: "取消"
+                on_release:app.edit_situation_cancle()
+        MDBoxLayout:
+            #占位
