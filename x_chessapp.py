@@ -2,7 +2,7 @@
 Author: Paoger
 Date: 2023-11-23 16:21:31
 LastEditors: Paoger
-LastEditTime: 2024-01-03 10:24:03
+LastEditTime: 2024-01-05 10:05:06
 Description: 
 
 Copyright (c) 2024 by Paoger, All Rights Reserved. 
@@ -1270,7 +1270,8 @@ done:
         xqfinit2xchessinit(xqf_init,xchess_init)
         rst = check_situation(xchess_init)
         if  rst['result_code'] == False:#局面有误
-            toast(rst['result_desc'],duration=5)            
+            Logger.debug(f"X-Chess edit_situation_done: {rst['result_desc']}")
+            toast(rst['result_desc'],duration=5)
             return
 
         app = MDApp.get_running_app()

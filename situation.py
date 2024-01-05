@@ -2,7 +2,7 @@
 Author: Paoger
 Date: 2023-11-30 09:57:29
 LastEditors: Paoger
-LastEditTime: 2024-01-01 15:04:20
+LastEditTime: 2024-01-05 10:11:33
 Description: 
 
 Copyright (c) 2023 by Paoger, All Rights Reserved. 
@@ -124,7 +124,7 @@ def check_situation(init_s):
                             rst['result_desc'] = f'仕{p.camp=},{p.identifier=}不在其位:{p.x=},{p.y}'
                             return rst
                     elif p.identifier == 'xiang':
-                        if not ((p.x == 2 and p.y == 0) or (p.x == 6 and p.y == 0) or (p.x == 4 and p.y == 2) or (p.x == 2 and p.y == 4) or (p.x == 6 and p.y == 4)):
+                        if not ((p.x == 2 and p.y == 0) or (p.x == 6 and p.y == 0) or (p.x == 0 and p.y == 2) or (p.x == 4 and p.y == 2) or (p.x == 8 and p.y == 2) or (p.x == 2 and p.y == 4) or (p.x == 6 and p.y == 4)):
                             rst['result_code'] = False
                             rst['result_desc'] = f'相{p.camp=},{p.identifier=}不在其位:{p.x=},{p.y}'
                             return rst
@@ -145,7 +145,7 @@ def check_situation(init_s):
                             rst['result_desc'] = f'士{p.camp=},{p.identifier=}不在其位:{p.x=},{p.y}'
                             return rst
                     elif p.identifier == 'xiang':
-                        if not ((p.x == 2 and p.y == 9) or (p.x == 6 and p.y == 9) or (p.x == 4 and p.y == 7) or (p.x == 2 and p.y == 5) or (p.x == 6 and p.y == 5)):
+                        if not ((p.x == 2 and p.y == 9) or (p.x == 6 and p.y == 9) or (p.x == 0 and p.y == 7) or (p.x == 4 and p.y == 7) or (p.x == 8 and p.y == 7) or (p.x == 2 and p.y == 5) or (p.x == 6 and p.y == 5)):
                             rst['result_code'] = False
                             rst['result_desc'] = f'象{p.camp=},{p.identifier=}不在其位:{p.x=},{p.y}'
                             return rst
