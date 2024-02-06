@@ -2,7 +2,7 @@
 Author: Paoger
 Date: 2023-11-06 16:13:14
 LastEditors: Paoger
-LastEditTime: 2023-12-18 15:34:37
+LastEditTime: 2024-02-06 13:45:40
 Description: 
 
 Copyright (c) 2023 by Paoger, All Rights Reserved. 
@@ -17,7 +17,18 @@ Copyright (c) 2023 by Paoger, All Rights Reserved.
 17 - 32:依次为黑方的车马象士将士像马车炮炮卒卒卒卒卒
 依次记录黑1路车、2路马、3路象、4路士、5路帅、6路士、7路象、8路马、9路车、2路炮、8路炮、1路卒、3路卒、5路卒、7路卒、9路卒的初始坐标位置。
 """
-g_const_S_P_ORDEER = ['ju','ma','xiang','shi','shuai','shi','xiang','ma','ju','pao','pao','bing','bing','bing','bing','bing','ju','ma','xiang','shi','shuai','shi','xiang','ma','ju','pao','pao','bing','bing','bing','bing','bing']
+"""修改FEN格式，此处统一为小写
+红方 黑方	字母
+帅	 将	    k
+仕	 士	    a
+相	 象	    b
+马	 马	    n
+车	 车	    r
+炮	 炮	    c
+兵	 卒	    p
+"""
+#g_const_S_P_ORDEER = ['ju','ma','xiang','shi','shuai','shi','xiang','ma','ju','pao','pao','bing','bing','bing','bing','bing','ju','ma','xiang','shi','shuai','shi','xiang','ma','ju','pao','pao','bing','bing','bing','bing','bing']
+g_const_S_P_ORDEER = ['r','n','b','a','k','a','b','n','r','c','c','p','p','p','p','p','r','n','b','a','k','a','b','n','r','c','c','p','p','p','p','p']
 
 #key:f'{x},{y}' value:{Piece}
 #全局变量 棋盘的初始局面,此值不可改变

@@ -2,7 +2,7 @@
 Author: Paoger
 Date: 2023-12-04 13:56:00
 LastEditors: Paoger
-LastEditTime: 2023-12-18 13:03:07
+LastEditTime: 2024-02-06 14:06:18
 Description: 
 
 Copyright (c) 2023 by Paoger, All Rights Reserved. 
@@ -22,9 +22,9 @@ class PieceWidget2(Scatter):
     #svg_filename = StringProperty('svg_filename')
     svg_filename = None
 
-    #阵营，红：r，黑：b
+    #阵营，红：w，黑：b
     camp = None
-    #棋子标识符，车：ju，马：ma，象：xiang，士：shi，帅(将)：shuai，炮：pao，兵（卒）：bing
+    #棋子标识符，车：r，马：n，象：b，士：a，帅(将)：k，炮：c，兵（卒）：p
     identifier = None
     old_x = old_y = None #便于将棋子移回原位，布局坐标
     #坐标原点左下角，棋盘横坐标,整数 0~8,变量不能是内部变量x，否则有冲突

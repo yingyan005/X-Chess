@@ -2,14 +2,16 @@
 Author: Paoger
 Date: 2023-12-08 10:43:27
 LastEditors: Paoger
-LastEditTime: 2023-12-15 19:52:34
+LastEditTime: 2024-01-15 20:14:57
 Description: 
 
 Copyright (c) 2023 by Paoger, All Rights Reserved. 
 '''
-import platform
-pf = platform.system()
-if pf == "Windows":
+#import platform
+#pf = platform.system()
+#if pf == "Windows":
+from kivy.utils import platform
+if platform == "win":
     #解决windows下中文输入的候选词显示begin
     import ctypes
     from ctypes import wintypes
@@ -64,14 +66,16 @@ class MyMDTextField(MDTextField):
 
     def on_imc_id(self, instance, imc_id):
         self.imc_id = imc_id
-        pf = platform.system()
-        if pf == "Windows":
+        #pf = platform.system()
+        #if pf == "Windows":
+        if platform == "win":
             #绑定输入键盘事件
             self.bind(text=self.ime_press)
 
     def ime_press(self,*args):
-        pf = platform.system()
-        if pf == "Windows":
+        #pf = platform.system()
+        #if pf == "Windows":
+        if platform == "win":
             user32 = ctypes.WinDLL(name="user32")
             imm32 = ctypes.WinDLL(name="imm32")
             h_wnd = user32.GetForegroundWindow()

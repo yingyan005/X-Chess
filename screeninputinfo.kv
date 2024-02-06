@@ -1,0 +1,50 @@
+<ScreenInputInfo>:
+    #用来避免手机输入法遮挡的不爽
+    name: "ScreenInputInfo"
+
+    MDBoxLayout: 
+        orientation: "vertical"
+        spaceing:20
+        MDBoxLayout:
+            size_hint_y:.40
+            orientation: "vertical"
+            MyMDTextField:
+                size_hint_y:.90
+                id:id_input_info
+                max_text_length:255
+                multiline: True
+                hint_text: "输入信息"
+                mode: "rectangle"# fill round line rectangle
+                hint_text_color_normal: "red"
+                hint_text_color_focus: "red"
+                #text_color_normal: "black"
+                #text_color_focus: "black"
+                line_anim:True
+                active_line:True
+                imc_scr_id:'id_screeninputinfo'
+                imc_id:'id_im_candidate'
+            MDLabel:#蛋疼的windows中文输入法候选框
+                size_hint_y:.10
+                id:id_im_candidate                           
+                text:""
+                halign: "center"
+        MDBoxLayout:
+            size_hint_y:.10
+            orientation: "horizontal"
+            MDRelativeLayout:
+                MDRectangleFlatButton:
+                    id:id_btn_ok
+                    pos_hint:{"center_x": .25, "center_y": .5}
+                    text: "确定"
+                    theme_text_color: "Custom"
+                    text_color: "orange"
+                    #on_release:动态绑定
+                MDRectangleFlatButton:
+                    id:id_btn_cancle
+                    pos_hint:{"center_x": .75, "center_y": .5}
+                    text: "取消"
+                    #on_release:动态绑定
+                    #on_release:app.back_mainScreen()
+        MDBoxLayout:
+            size_hint_y:.50
+            #占位，用来给手机输入法占位

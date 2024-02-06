@@ -113,7 +113,7 @@ class Chessboard2(MDRelativeLayout):
                         else:
                             x = self.x_offset + self.grid_side_len * (i+1-8) + self.grid_side_len/2
                             y = self.y_offset - self.grid_side_len*3/2
-                        p = Piece('r',g_const_S_P_ORDEER[i],x,y)
+                        p = Piece('w',g_const_S_P_ORDEER[i],x,y)
                     else: #黑方棋子
                         if i < 24:#第一排
                             x = self.x_offset + self.grid_side_len * (i+1-16) + self.grid_side_len/2

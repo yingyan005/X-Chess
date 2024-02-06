@@ -2,7 +2,7 @@
 Author: Paoger
 Date: 2023-12-17 18:22:09
 LastEditors: Paoger
-LastEditTime: 2023-12-27 11:18:32
+LastEditTime: 2024-01-25 12:48:40
 Description: 
 
 Copyright (c) 2023 by Paoger, All Rights Reserved. 
@@ -85,6 +85,7 @@ def saveFileXQF():
 
     file_name = os.path.basename(filename)
     app.title = f"X-Chess {file_name[:-4]}"
+    app.root.ids['id_screenmain'].ids['id_movesnote'].hint_text= app.title
 
     Logger.debug(f'X-Chess saveFileXQF: {app.chessmovesfilename=}')
 

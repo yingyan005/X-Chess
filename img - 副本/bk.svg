@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100"
+   height="100"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   version="1.0"
+   sodipodi:docname="ship.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3214">
+      <stop
+         style="stop-color:#c6c600;stop-opacity:1;"
+         offset="0"
+         id="stop3216" />
+      <stop
+         style="stop-color:#ffff00;stop-opacity:1;"
+         offset="1"
+         id="stop3218" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3202">
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="0"
+         id="stop3204" />
+      <stop
+         style="stop-color:#bd0000;stop-opacity:1;"
+         offset="1"
+         id="stop3206" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3194">
+      <stop
+         style="stop-color:#dedede;stop-opacity:1;"
+         offset="0"
+         id="stop3196" />
+      <stop
+         style="stop-color:#989898;stop-opacity:1;"
+         offset="1"
+         id="stop3198" />
+    </linearGradient>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 556.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 556.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 380.78739 : 1"
+       id="perspective10" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3202"
+       id="linearGradient3208"
+       x1="42.241379"
+       y1="32.741379"
+       x2="115.51724"
+       y2="62.051723"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-32.758621,-3.8793108)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7.7951362"
+     inkscape:cx="50.09534"
+     inkscape:cy="49.967055"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1013"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <ellipse
+       class="st0"
+       cx="50.095612"
+       cy="50.088902"
+       id="circle1"
+       style="fill:#1a1a1a;stroke-width:0.0924307"
+       rx="49.861767"
+       ry="49.963661" />
+    <ellipse
+       class="st1"
+       cx="49.983673"
+       cy="50.056149"
+       id="circle2"
+       style="display:inline;fill:#f3f2cc;stroke-width:0.0897546"
+       rx="44.971252"
+       ry="44.873425" />
+    <g
+       class="st2"
+       id="g2"
+       style="enable-background:new"
+       transform="matrix(0.07908704,0,0,0.1317567,9.2091222,-22.695289)">&#10;	<path
+   class="st0"
+   d="m 460.9,602.1 c 9.9,-34.6 24.7,-52 44.5,-52 44.5,5 79.1,5 103.9,0 h 148.4 v -59.4 c 9.9,-19.8 24.7,-29.7 44.5,-29.7 29.7,0 47,14.8 52,44.5 V 550 c 94,0 150.9,2.5 170.7,7.4 -24.8,54.4 -52,76.7 -81.6,66.8 -29.7,-9.9 -59.4,-17.3 -89.1,-22.3 V 758 c 0,29.7 -17.3,52 -52,66.8 -34.7,14.8 -71.8,19.8 -111.3,14.8 -69.3,-9.9 -116.3,-29.7 -141,-59.4 -9.9,-14.8 -7.4,-19.8 7.4,-14.8 19.8,5 47,9.9 81.6,14.8 89.1,9.9 128.6,-22.3 118.8,-96.5 v -89.1 c -113.8,-4.9 -198,2.5 -252.3,22.3 -29.7,19.8 -44.5,17.3 -44.5,-7.4 v 178.1 c 4.9,34.7 -7.4,54.4 -37.1,59.4 -29.7,5 -44.5,-9.9 -44.5,-44.5 V 594.7 h -66.8 c -9.9,79.2 -24.8,133.6 -44.5,163.3 -44.5,64.4 -94,74.2 -148.4,29.7 24.7,-14.8 49.5,-34.6 74.2,-59.4 34.6,-39.5 49.5,-84.1 44.5,-133.6 -34.7,0 -64.4,5 -89.1,14.8 -29.7,9.9 -39.6,0 -29.7,-29.7 9.9,-29.7 27.2,-44.5 52,-44.5 14.8,5 27.2,7.4 37.1,7.4 h 170.7 v -74.2 h -96.5 c -19.8,5 -37.1,9.9 -52,14.8 -9.9,0 -19.8,-7.4 -29.7,-22.3 -5,-14.8 0,-32.1 14.8,-52 4.9,-29.7 4.9,-56.9 0,-81.6 0,-24.7 14.8,-34.6 44.5,-29.7 24.7,5 34.6,24.8 29.7,59.4 -5,24.8 -7.4,44.5 -7.4,59.4 h 96.5 V 290.4 c 0,-34.6 12.4,-52 37.1,-52 34.6,5 49.5,27.3 44.5,66.8 V 602.1 Z M 691,253.3 c 19.8,-19.8 42,-14.8 66.8,14.8 0,14.8 -12.4,27.3 -37.1,37.1 24.7,14.8 69.2,24.8 133.6,29.7 29.7,-9.9 49.5,-4.9 59.4,14.8 19.8,19.8 7.4,39.6 -37.1,59.4 C 837,428.9 795,448.7 750.4,468.5 686,498.2 639,518 609.3,527.9 c -74.2,24.8 -118.8,22.3 -133.6,-7.4 0,-9.9 7.4,-14.8 22.3,-14.8 74.2,-9.9 163.3,-44.5 267.2,-103.9 19.8,-14.8 22.3,-27.2 7.4,-37.1 -44.5,-24.7 -84.1,-27.2 -118.8,-7.4 -64.4,34.7 -111.3,52 -141,52 -24.8,0 -39.6,-7.4 -44.5,-22.3 0,-4.9 22.3,-14.8 66.8,-29.7 54.4,-19.9 106.4,-54.5 155.9,-104 z m -118.8,163.3 44.5,22.3 c 0,9.9 -17.3,17.3 -52,22.3 -49.5,5 -69.3,-2.4 -59.4,-22.3 15,-24.8 37.3,-32.2 66.9,-22.3 z m 22.3,215.2 c 14.8,-19.8 29.7,-19.8 44.5,0 14.8,29.7 34.6,54.4 59.4,74.2 9.9,14.8 4.9,22.3 -14.8,22.3 -24.8,0 -49.5,-7.4 -74.2,-22.3 -39.7,-24.7 -44.6,-49.4 -14.9,-74.2 z m 96.5,-252.4 44.5,22.3 c 0,9.9 -17.3,17.3 -52,22.3 -44.5,0 -64.4,-7.4 -59.4,-22.3 C 644,372 666.2,364.6 691,379.4 Z"
+   id="path2"
+   style="fill:#050200" />
+&#10;</g>
+  </g>
+</svg>

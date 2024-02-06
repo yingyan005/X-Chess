@@ -10,17 +10,23 @@ from global_var import g_const_S_P_ORDEER
 from piece import Piece
 from situation import print_situation
 
-
-def tree2txt(path: str):
+#android :path 从 app.sel_filename取
+#other:从 MDFilemanager传参获取
+def tree2txt(instance=None,path=None):
     Logger.debug("X-Chess X-ChessApp:******tree2txt begin******")
-    app = MDApp.get_running_app()
 
-    '''
-    It will be called when you click on the file name
-    or the catalog selection button.
-    :param path: path to the selected directory or file;
-    '''
-    app.exit_manager()
+    app = MDApp.get_running_app()
+    
+    if path == None:        
+        app.back_mainScreen()
+        path = app.sel_filename
+    else:#path从 MDFilemanager传参获取
+        '''
+        It will be called when you click on the file name
+        or the catalog selection button.
+        :param path: path to the selected directory or file;
+        '''
+        app.exit_manager()
 
     # 打开文件
     with open(path, 'rb') as file:
@@ -46,7 +52,7 @@ def tree2txt(path: str):
             x = xy // 10
             y = xy % 10
             if i < 16:#红方棋子
-                p = Piece('r',g_const_S_P_ORDEER[i],x,y)
+                p = Piece('w',g_const_S_P_ORDEER[i],x,y)
             else: #黑方棋子
                 p = Piece('b',g_const_S_P_ORDEER[i],x,y)
             init_situation[f'{x},{y}'] = p

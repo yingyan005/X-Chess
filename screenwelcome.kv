@@ -1,0 +1,19 @@
+<ScreenWelcome>:
+    name: "ScreenWelcome"
+
+    FitImage:
+        source: "X.png"
+    
+    MDRectangleFlatButton:
+    #MDRaisedButton:
+        id:id_btn_ok
+        pos_hint:{"center_x": .5, "center_y": .5}
+        text: "棋如人生"#日拱一卒
+        font_size: "48sp"
+        type:"large"
+        theme_text_color: "Custom"
+        text_color: "orange"
+        line_color: "black"
+        #md_bg_color: "red"
+        on_release: 
+            app.welcome2main()

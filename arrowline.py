@@ -2,7 +2,7 @@
 Author: Paoger
 Date: 2023-11-27 15:32:43
 LastEditors: Paoger
-LastEditTime: 2024-01-01 16:16:23
+LastEditTime: 2024-01-12 14:11:13
 Description: 
 
 Copyright (c) 2023 by Paoger, All Rights Reserved. 
@@ -32,7 +32,7 @@ class Arrowline(Widget):
         with self.canvas:
             self.canvas.clear()
             #Color(128,128,0,0.6)#浅黄
-            Color(0.129,0.588,0.953,0.3)#浅蓝 33 150 243 
+            Color(0.129,0.588,0.953,0.6)#浅蓝 33 150 243 
 
             Line(points=[self.sx,self.sy,self.ex,self.ey],width=self.w)
             Line(circle=(self.ex,self.ey,self.r),width=self.r)

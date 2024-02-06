@@ -1,0 +1,175 @@
+<ScreenMenu>:
+    name: "ScreenMenu"
+
+    MDGridLayout:
+        #adaptive_height: True
+        adaptive_size: True
+        spacing: "6dp"
+        md_bg_color: app.theme_cls.primary_color
+        cols:3
+        rows:6
+
+        #MDRectangleFlatIconButton:
+        #    id: id_btn_new_situation
+        #    text: "新建局面"
+        #    icon: "newspaper-variant-outline"
+        #    theme_text_color: "Custom"
+        #    text_color: "white"
+        #    line_color: "red"
+        #    theme_icon_color: "Custom"
+        #    icon_color: "orange"
+        #    on_release: 
+        #        root.manager.current_heroes = ""
+        #        root.manager.current = "screenMain"
+        #        app.new_situation()
+        #MDRectangleFlatIconButton:
+        #    id: id_btn_edit_situation
+        #    text: "编辑局面"
+        #    icon: "view-dashboard-edit-outline"
+        #    theme_text_color: "Custom"
+        #    text_color: "white"
+        #    line_color: "red"
+        #    theme_icon_color: "Custom"
+        #    icon_color: "orange"
+        #    on_release: 
+        #        root.manager.current_heroes = ""
+        #        root.manager.current = "screenMain"
+        #        app.edit_situation()
+        #MDRectangleFlatIconButton:
+        #    id: id_btn_open_XQFFile
+        #    text: "打开棋谱"
+        #    icon: "book-open-page-variant-outline"
+        #    theme_text_color: "Custom"
+        #    text_color: "white"
+        #    line_color: "red"
+        #    theme_icon_color: "Custom"
+        #    icon_color: "orange"
+        #    on_release: 
+        #        root.manager.current_heroes = ""
+        #        root.manager.current = "screenMain"
+        #        app.open_XQFFile()
+        MDRectangleFlatIconButton:
+            id: id_btn_saveXQF
+            text: "保存棋谱"
+            icon: "content-save-check-outline"
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "red"
+            theme_icon_color: "Custom"
+            icon_color: "orange"
+            on_release: 
+                root.manager.current_heroes = ""
+                root.manager.current = "screenMain"
+                app.saveXQF()
+        MDRectangleFlatIconButton:
+            id: id_btn_saveAs
+            text: "另存棋谱"
+            icon: "content-save-all-outline"
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "red"
+            theme_icon_color: "Custom"
+            icon_color: "orange"
+            on_release: 
+                #root.manager.current_heroes = ""
+                #root.manager.current = "screenMain"
+                app.saveAs()
+        MDRectangleFlatIconButton:
+            id: id_btn_mergeXQF
+            text: "合并XQF"
+            icon: "table-merge-cells"
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "red"
+            theme_icon_color: "Custom"
+            icon_color: "orange"
+            on_release: 
+                #root.manager.current_heroes = ""
+                #root.manager.current = "screenMain"
+                app.mergeXQF()
+        MDRectangleFlatIconButton:
+            id: id_btn_xqf2txt
+            text: "xqf=>txt"
+            icon: "text-recognition"
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "red"
+            theme_icon_color: "Custom"
+            icon_color: "orange"
+            on_release: 
+                #root.manager.current_heroes = ""
+                #root.manager.current = "screenMain"
+                app.xqf2txt()
+        #MDRectangleFlatIconButton:
+        #    id: id_btn_back_init
+        #    text: "退到初始"
+        #    icon: "restart"
+        #    theme_text_color: "Custom"
+        #    text_color: "white"
+        #    line_color: "red"
+        #    theme_icon_color: "Custom"
+        #    icon_color: "orange"
+        #    on_release: 
+        #        root.manager.current_heroes = ""
+        #        root.manager.current = "screenMain"
+        #        app.back_init()
+        #MDRectangleFlatIconButton:
+        #    id: id_btn_auto_roadshow
+        #    text: "自动路演"
+        #    icon: "refresh-auto"
+        #    theme_text_color: "Custom"
+        #    text_color: "white"
+        #    line_color: "red"
+        #    theme_icon_color: "Custom"
+        #    icon_color: "orange"
+        #    on_release: 
+        #        root.manager.current_heroes = ""
+        #        root.manager.current = "screenMain"
+        #        app.auto_roadshow()
+        MDRectangleFlatIconButton:
+            id: id_btn_set_engine
+            text: "引擎设置"
+            icon: "robot-love-outline"
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "red"
+            theme_icon_color: "Custom"
+            icon_color: "orange"
+            on_release: 
+                #root.manager.current_heroes = ""
+                #root.manager.current = "screenMain"
+                app.set_engine()
+        MDRectangleFlatIconButton:
+            id: id_btn_info
+            text: "关于"
+            icon: "information-outline"
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "red"
+            theme_icon_color: "Custom"
+            icon_color: "orange"
+            on_release: app.info()
+        MDRectangleFlatIconButton:
+            id: id_btn_stop
+            text: "退出软件"
+            icon: "exit-run"
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "red"
+            theme_icon_color: "Custom"
+            icon_color: "orange"
+            on_release: app.stop()
+        MDRectangleFlatIconButton:
+            id: id_btn_back
+            text: "返回"
+            icon: "keyboard-return"
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "red"
+            theme_icon_color: "Custom"
+            icon_color: "orange"
+            on_release: 
+                root.manager.current_heroes = ""
+                root.manager.current = "screenMain"
+
+

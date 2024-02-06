@@ -1,0 +1,89 @@
+<ScreenSelectFile>:
+    name: "ScreenSelectFile"
+
+    MDBoxLayout: 
+        orientation: "vertical"
+        spaceing:20
+        MDBoxLayout:
+            size_hint_y:.25
+            orientation: "vertical"
+            MDRelativeLayout:
+                size_hint_y:.30
+                MDLabel:
+                    pos_hint:{"center_x": .50, "center_y": .50}
+                    text:"当前目录:"
+                MDRectangleFlatIconButton:
+                    pos_hint:{"center_x": .35, "center_y": .5}
+                    id: id_btn_back
+                    text: "上一级"
+                    icon: "keyboard-return"
+                    theme_text_color: "Custom"
+                    #text_color: "white"
+                    #line_color: "red"
+                    theme_icon_color: "Custom"
+                    icon_color: "orange"
+                    on_release: app.toUperLevelDirWithFile()
+            MDBoxLayout:
+                size_hint_y:.70
+                MDTextField:
+                    id:id_cur_path
+                    size_hint_y:.7
+                    max_text_length:255
+                    multiline:True
+                    mode: "line"
+        MDBoxLayout: 
+            size_hint_y:.30
+            orientation: "vertical"
+            MDRelativeLayout:
+                size_hint_y:.10
+                MDLabel:                
+                    text: "子目录："
+                    pos_hint:{"center_x": .50, "center_y": .50}
+                MDLabel:
+                    pos_hint:{"center_x": .70, "center_y": .50}
+                    id:id_subdir
+                    text: ""
+                MDRectangleFlatIconButton:
+                    pos_hint:{"center_x": .75, "center_y": .5}
+                    id: id_btn_back
+                    text: "切换"
+                    icon: "keyboard-return"
+                    theme_text_color: "Custom"
+                    #text_color: "white"
+                    #line_color: "red"
+                    theme_icon_color: "Custom"
+                    icon_color: "orange"
+                    on_release:app.cdSubDir()
+            MDScrollView:
+                size_hint_y:.90
+                MDList:
+                    id: id_dir_list
+        MDBoxLayout: 
+            size_hint_y:.35
+            orientation: "vertical"
+            MDLabel:
+                id:id_filetype
+                size_hint_y:.05
+                text: "文件类型"        
+            MDScrollView:
+                size_hint_y:.95
+                #id: id_chessmanualtree            
+                #do_scroll_x: True
+                #do_scroll_y: True                
+                MDList:
+                    id: id_file_list
+        MDBoxLayout:
+            size_hint_y:.10
+            orientation: "horizontal"
+            MDRelativeLayout:
+                MDRectangleFlatButton:
+                    id:id_btn_ok
+                    pos_hint:{"center_x": .25, "center_y": .5}
+                    text: "确定"
+                    theme_text_color: "Custom"
+                    text_color: "orange"
+                    #on_release:app.open_SelectedXQFFile()
+                MDRectangleFlatButton:
+                    pos_hint:{"center_x": .75, "center_y": .5}
+                    text: "取消"
+                    on_release:app.back_mainScreen()

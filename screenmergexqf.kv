@@ -16,7 +16,7 @@
                 MDRoundFlatButton:
                     text: "选择第1个文件"
                     pos_hint:{"center_x": .5, "center_y": .5}
-                    on_release:app.select_xqffile('id_screenmergexqf','id_filename01')
+                    on_release:app.select_xqffile('ScreenMergeXQF','id_screenmergexqf','id_filename01')
             MyMDTextField:
                 id:id_filename01
                 max_text_length:255
@@ -32,7 +32,7 @@
                 MDRoundFlatButton:
                     text: "选择第2个文件"
                     pos_hint:{"center_x": .5, "center_y": .5}
-                    on_release:app.select_xqffile('id_screenmergexqf','id_filename02')
+                    on_release:app.select_xqffile('ScreenMergeXQF','id_screenmergexqf','id_filename02')
             MyMDTextField:
                 id:id_filename02
                 max_text_length:255
@@ -40,23 +40,6 @@
                 mode: "line"
                 imc_id:'id_im_input'
                 imc_scr_id:'id_screenmergexqf'
-        
-        #MDBoxLayout:
-        #    size_hint_y:.10
-        #    orientation: "vertical"
-        #    MDRelativeLayout:
-        #        MDRoundFlatButton:
-        #            text: "选择第3个文件"
-        #            pos_hint:{"center_x": .5, "center_y": .5}
-        #            on_release:app.select_xqffile('id_screenmergexqf','id_filename03')
-        #    MyMDTextField:
-        #        id:id_filename03
-        #        max_text_length:255
-        #        multiline:True
-        #        mode: "line"
-        #        imc_id:'id_im_input'
-        #        imc_scr_id:'id_screenmergexqf'        
-        
         
         MDBoxLayout:
             size_hint_y:.25
@@ -75,7 +58,7 @@
                         text: "浏览"
                         theme_text_color: "Custom"
                         text_color: "orange"
-                        on_release:app.select_savepath('id_screenmergexqf','id_filepath')
+                        on_release:app.select_path('ScreenMergeXQF','id_screenmergexqf','id_filepath')
                     MDBoxLayout:
                         #占位
                 MyMDTextField:

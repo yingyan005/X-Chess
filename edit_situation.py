@@ -38,7 +38,7 @@ def edit_situation_full():
         if i < 16:#红                
             for item in childs:
                 #print(f"{item}")
-                if item.camp == 'r' and item.identifier == g_const_S_P_ORDEER[i]:
+                if item.camp == 'w' and item.identifier == g_const_S_P_ORDEER[i]:
                     #棋子到达位置
                     endxy = full_situation[i*2:i*2+2]
                     #print(f"{endxy=}")

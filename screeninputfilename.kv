@@ -33,7 +33,7 @@
                 text: "浏览"
                 theme_text_color: "Custom"
                 text_color: "orange"
-                on_release:app.select_savepath('id_scrinputfilename','id_filepath')
+                on_release:app.select_path('ScreenInputFileName','id_scrinputfilename','id_filepath')
         MDBoxLayout:
             size_hint_y:.1
             MDLabel:#蛋疼的windows中文输入法
@@ -72,6 +72,6 @@
             MDRectangleFlatButton:
                 pos_hint:{"center_x": .75, "center_y": .5}
                 text: "取消"
-                on_release:app.edit_situation_cancle()
+                on_release:app.back_mainScreen()
         MDBoxLayout:
             #占位

@@ -1,0 +1,158 @@
+<ScreenSetEngine>:
+    name: "screenSetEngine"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing:16
+        MDBoxLayout:
+            size_hint_y:.3
+            orientation: "vertical"
+            spacing:8
+            MDLabel:
+                size_hint_y:.12
+                text:'AI引擎设置'
+                halign:"center"
+            MDBoxLayout: 
+                size_hint_y:.16
+                orientation: "horizontal" 
+                MDLabel:
+                    size_hint_x:.45
+                    text:'    AI思考时间毫秒：'
+                MDTextField:
+                    id:id_ai_think_time
+                    size_hint_x:.55
+                    multiline:False
+                    required: True
+                    mode: "line"
+            #MDLabel:
+            #    size_hint_y:.12
+            #    text:'    选择引擎'
+            MDRelativeLayout:
+                size_hint_y:.24
+                #MDCheckbox:
+                #    pos_hint:{"center_x": .15, "center_y": .95}
+                #    id:id_checkbox_xqpy
+                #    group: 'group1'                    
+                #    active: True
+                #    icon_active: "check"
+                #    icon_inactive: "close"
+                #    color_active: "red"
+                #    color_active: "red"
+                #    size_hint: None, None
+                #    size: "128dp", "48dp"
+                #    on_active:app.engine_name = 'xqpy'
+                #MDLabel:
+                #    pos_hint:{"center_x": .75, "center_y": .95}
+                #    text:'XQPy引擎(天天象棋AI中高之间)'                        
+                #MDCheckbox:
+                #    pos_hint:{"center_x": .15, "center_y": .35}
+                #    id:id_checkbox_uci                     
+                #    group: 'group1'
+                #    icon_active: "check"
+                #    icon_inactive: "close"
+                #    color_active: "red"
+                #    color_active: "red"
+                #    size_hint: None, None
+                #    size: "128dp", "48dp"
+                #    on_active:app.engine_name = 'uci'
+                MDLabel:
+                    pos_hint:{"center_x": .55, "center_y": .35}
+                    text:'UCI引擎'
+                #非android下使用
+                MDRectangleFlatButton:
+                    id:id_sel_engine_file
+                    text: "选择"
+                    type:"small"
+                    pos_hint:{"center_x": .55, "center_y": .35}
+                    on_release:app.select_engine_file()
+                #android下使用 begin
+                MDCheckbox:
+                    pos_hint:{"center_x": .37, "center_y": .35}
+                    id:id_checkbox_inner
+                    group: 'group2'
+                    icon_active: "check"
+                    icon_inactive: "close"
+                    color_active: "red"
+                    color_active: "red"
+                    size_hint: None, None
+                    size: "32dp", "32dp"
+                    on_active:
+                        app.engine_name = 'uci'
+                        app.uci_engine_location = 'inner'
+                        app.set_inner_engine()
+                MDLabel:
+                    id:id_checkbox_inner_lab
+                    pos_hint:{"center_x": .9, "center_y": .35}
+                    text:'内置'
+
+                MDCheckbox:
+                    pos_hint:{"center_x": .64, "center_y": .35}
+                    id:id_checkbox_outer
+                    group: 'group2'
+                    icon_active: "check"
+                    icon_inactive: "close"
+                    color_active: "red"
+                    color_active: "red"
+                    size_hint: None, None
+                    size: "32dp", "32dp"
+                    on_active:
+                        app.engine_name = 'uci'
+                        app.uci_engine_location = 'outer'
+                        app.set_outer_engine()
+                MDLabel:
+                    id:id_checkbox_outer_lab
+                    pos_hint:{"center_x": 1.17, "center_y": .35}
+                    text:'外置'
+                #android下使用 end
+                
+                MDRectangleFlatButton:
+                    pos_hint:{"center_x": .88, "center_y": .35}
+                    id:id_uci_info
+                    type:"small"
+                    text: "uci"
+                    on_release:app.get_uci_info()
+            MDTextField:
+                size_hint_y:.36
+                id:id_uci_engine_filename
+                #disabled: True
+                multiline:True
+                mode: "line"#rectangle line
+        MDBoxLayout:
+            size_hint_y:.37
+            MDScrollView:                
+                MDTextField:
+                    id:id_uci_info
+                    hint_text:"uci_info"
+                    text:"引擎在收到UCI命令后，引擎必须用 id命令来帮助GUI识别自己的身份。并发送 option信息以告诉GUI该引擎支持哪些设置。下面是皮卡鱼参数仅供参考，以引擎返回的参数为准，不同引擎可能有不同的参数。MultiPV（主变思考数量,越高棋力越弱），Skill level（棋力水平），sixty move rule（60回合自然限招规则），Repetition Rule（棋规），UCIWDLcentipawn（胜率分数开关）"
+                    multiline:True
+                    #disabled: True
+                    readonly:True
+                    mode: "rectangle"
+        MDBoxLayout:
+            size_hint_y:.23            
+            MDScrollView:                
+                MDTextField:
+                    id:id_uci_options
+                    hint_text:"setoption"
+                    text:"..."
+                    multiline:True
+                    mode: "rectangle"
+        MDRelativeLayout:
+            size_hint_y:.1
+            orientation: "horizontal"
+            MDRectangleFlatButton:
+                pos_hint:{"center_x": .15, "center_y": .5}
+                text: "修改"
+                theme_text_color: "Custom"
+                text_color: "orange"
+                on_release:app.input_engineoption_edit()
+            MDRectangleFlatButton:
+                pos_hint:{"center_x": .45, "center_y": .5}
+                text: "保存"
+                theme_text_color: "Custom"
+                text_color: "orange"
+                on_release:app.save_engine_settings()
+            MDRectangleFlatButton:
+                pos_hint:{"center_x": .75, "center_y": .5}
+                text: "返回"
+                on_release:app.back_mainScreen()

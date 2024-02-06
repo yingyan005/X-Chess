@@ -1,0 +1,278 @@
+<ScreenMain>:
+    name: "screenMain"
+
+    FitImage:
+        source: "background.png"
+
+    MDBoxLayout: 
+        orientation: "vertical"
+        MDBoxLayout: 
+            orientation: "vertical"
+            MDBoxLayout: 
+                orientation: "vertical"
+                size_hint_y:.90
+                MDBoxLayout: 
+                    size_hint_y:.70
+                    orientation: "vertical"
+                    Chessboard:#相对布局，子控件的位置基于布局
+                        id:id_chessboard        
+                MDBoxLayout:
+                    size_hint_y:.30
+                    orientation: "horizontal"
+                    MDRelativeLayout
+                        size_hint_x:.11
+                        orientation: "vertical"
+                        MDIconButton:
+                            id:id_btn_analyzing
+                            icon: "robot-confused-outline"
+                            icon_size: "28sp"
+                            pos_hint: {'center_x': 0.5,'center_y': 0.7}
+                            #icon_size: "48sp"
+                            theme_icon_color: "Custom"
+                            icon_color: "yellow"
+                            on_release:app.analyzing()
+                        MDIconButton:
+                            id:id_btn_ai
+                            icon: "tag-search-outline"
+                            icon_size: "28sp"
+                            theme_icon_color: "Custom"
+                            #icon_color: app.theme_cls.primary_color
+                            icon_color: "yellow"
+                            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            on_release:app.show_ai_move()
+                    MDBoxLayout:
+                        size_hint_x:.78
+                        size_hint_y: 1
+                        orientation: "vertical"
+                        spacing:10
+                        MDScrollView:
+                            size_hint_y:.5
+                            Movesnote:
+                                id:id_movesnote                            
+                                #size_hint_y: 1
+                                max_text_length:255
+                                #s设置font_size会造成PC和手机不同效果
+                                #font_size: self.height / 10
+                                #font_style:"H5"
+                                multiline: True
+                                hint_text: "意在,伏着;见招,拆招"
+                                mode: "rectangle"# fill round line rectangle
+                                hint_text_color_normal: "red"
+                                hint_text_color_focus: "red"
+                                text_color_normal: "black"
+                                text_color_focus: "black"
+                                line_anim:True
+                                active_line:True
+                                #readonly:True
+                                #on_double_tap:self.readonly=False
+                                imc_id:'id_movesnote_input'                            
+                        MDScrollView:
+                            size_hint_y:.48
+                            MDTextField:
+                                id:id_movesnote_input
+                                #font_size:'12sp'
+                                text:""
+                                text_color_normal: "blue"
+                                text_color_focus: "black"
+                                multiline:True
+                                readonly: True
+                                halign: "left"
+                                mode: "rectangle"# fill round line rectangle
+                            #MDLabel:#蛋疼的windows中文输入法
+                            #    id:id_movesnote_input                            
+                            #    text:"红炮2平7  黑卒7进1 红马2进3 黑马8进7 红车1平2 黑车9平8 红车2进4 黑炮8平9 红车2平4 黑象3进5 红相7进5 马2进3 红兵7进1 黑士4进5 红炮7退1 黑车1平4 红兵7进1 黑象5进3 红仕6进5 黑马7进8 红炮8平6 黑马8进7 红马8进7 黑车4进6 红车9平8 黑炮2退2 红车8进6 黑炮2平3 红车4平6 黑车4退1"
+                            #    halign: "center"
+                        MDBoxLayout:
+                            size_hint_y:.02
+                            #占个位分割下
+                    MDRelativeLayout
+                        size_hint_x:.11
+                        orientation: "vertical"
+                        MDIconButton:
+                            id:id_btn_editnote_enable
+                            icon: "note-edit-outline"
+                            icon_size: "28sp"
+                            pos_hint: {'center_x': 0.5,'center_y': 0.9}
+                            theme_icon_color: "Custom"
+                            icon_color: app.theme_cls.primary_color
+                            on_release:app.input_noteedit()
+                        MDIconButton:
+                            icon: "format-list-bulleted-type"
+                            icon_size: "28sp"
+                            pos_hint: {'center_x': 0.5,'center_y': 0.7}
+                            #icon_size: "48sp"
+                            theme_icon_color: "Custom"
+                            #icon_color: app.theme_cls.primary_color
+                            icon_color: "red"
+                            on_release:
+                                root.manager.current_heroes = ""
+                                root.manager.current = "screenMoves"
+                        MDIconButton:
+                            icon: "delete-forever"
+                            icon_size: "28sp"
+                            theme_icon_color: "Custom"
+                            #icon_color: app.theme_cls.primary_color
+                            icon_color: "yellow"
+                            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            on_release:app.delete_movesdlg()
+                        #MDIconButton:
+                        #    icon: "delete-restore"
+                        #    icon_size: "28sp"
+                        #    theme_icon_color: "Custom"
+                        #    icon_color: app.theme_cls.primary_color
+                        #    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                        #    on_release:app.in_the_future()
+            
+            #kivymd 1.1.0 MDTopAppBar 在安卓13中闪退，so
+            #MDBottomAppBar:
+            #    id:id_bottombar
+            #    size_hint_y:.2
+            #    MDTopAppBar:            
+            #        type: "bottom"
+            #        type_height:"small"
+            #        #title: ""
+            #        icon: "hand-peace"
+            #        mode: "center"  #center free-center
+            #        #阴影的范围
+            #        elevation: 0
+            #        opposite_colors: True
+            #        left_action_items: [["menu", lambda x: app.menucallback(x)],["backburger",lambda x:app.previous_branch()],["arrow-left-thin-circle-outline",lambda x:app.previous_moves()]]
+            #        right_action_items: [["arrow-right-thin-circle-outline",lambda x:app.next_moves()],["forwardburger",lambda x:app.next_branch()],["information-outline",lambda x:app.info()]]
+            #        on_action_button: app.letsfight()
+
+            #MDBoxLayout:
+            #    size_hint_y:.02
+                #占个位分割下
+            MDRelativeLayout:
+                id:id_bottombar
+                size_hint_y:.10
+
+                MDIconButton:
+                    id: id_btn_back_init
+                    pos_hint: {"center_x": .125, "center_y": .85}
+                    icon: "restart"
+                    icon_size: "28sp"
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
+                    on_release:app.back_init()
+                MDIconButton:
+                    id: id_btn_previous_branch
+                    pos_hint: {"center_x": .250, "center_y": .85}
+                    icon: "backburger"
+                    icon_size: "28sp"
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
+                    on_release: app.previous_branch()
+                MDIconButton:
+                    id: id_btn_previous_moves
+                    pos_hint: {"center_x": .375, "center_y": .85}
+                    icon: "arrow-left-thin-circle-outline"
+                    icon_size: "28sp"
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
+                    on_release: app.previous_moves()
+                MDIconButton:
+                    id: id_btn_letsfight
+                    pos_hint: {"center_x": .500, "center_y": .85}
+                    icon: "arrow-up-down-bold-outline"
+                    icon_size: "26sp"
+                    theme_icon_color: "Custom"
+                    icon_color: (0,1,0.5,1)#'red'#app.theme_cls.primary_color
+                    on_release: app.bottom_top()
+                MDIconButton:
+                    id: id_btn_next_moves
+                    pos_hint: {"center_x": .625, "center_y": .85}
+                    icon: "arrow-right-thin-circle-outline"
+                    icon_size: "28sp"
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
+                    on_release: app.next_moves()
+                MDIconButton:
+                    id: id_btn_next_branch
+                    pos_hint: {"center_x": .750, "center_y": .85}
+                    icon: "forwardburger"
+                    icon_size: "28sp"
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
+                    on_release: app.next_branch()
+                MDIconButton:
+                    id: id_btn_auto_roadshow
+                    pos_hint: {"center_x": .875, "center_y": .85}
+                    icon: "refresh-auto"
+                    icon_size: "28sp"
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
+                    on_release: app.auto_roadshow()
+
+                MDIconButton:
+                    id: id_btnmenu
+                    pos_hint: {"center_x": .125, "center_y": .25}
+                    icon: "menu"
+                    icon_size: "28sp"
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
+                    #on_release: app.menu.open()
+                    on_release:
+                        root.manager.current_heroes = ""
+                        root.manager.current = "ScreenMenu"
+                MDIconButton:
+                    id: id_btn_new_situation
+                    pos_hint: {"center_x": .250, "center_y": .25}
+                    icon: "newspaper-variant-outline"
+                    icon_size: "28sp"
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
+                    on_release:app.new_situation()
+                MDIconButton:
+                    id: id_btn_open_XQFFile
+                    pos_hint: {"center_x": .375, "center_y": .25}
+                    icon: "book-open-page-variant-outline"
+                    icon_size: "28sp"
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
+                    on_release:app.open_XQFFile()
+                MDIconButton:
+                    id: id_btn_letsfight
+                    pos_hint: {"center_x": .500, "center_y": .25}
+                    icon: "hand-peace"
+                    icon_size: "36sp"
+                    theme_icon_color: "Custom"
+                    icon_color: (0,1,0.5,1)#'red'#app.theme_cls.primary_color
+                    on_release: app.letsfight()
+                MDIconButton:
+                    id: id_btn_edit_situation
+                    pos_hint: {"center_x": .625, "center_y": .25}
+                    icon: "view-dashboard-edit-outline"
+                    icon_size: "28sp"
+                    theme_icon_color: "Custom"
+                    icon_color: app.theme_cls.primary_color
+                    on_release:app.edit_situation()                
+                MDIconButton:
+                    id: id_btn_ai_red
+                    pos_hint: {"center_x": .750, "center_y": .25}
+                    icon: "robot-happy-outline"
+                    icon_size: "28sp"
+                    theme_icon_color: "Custom"
+                    icon_color: "red"
+                    on_release: app.ai_go_red()
+                MDIconButton:
+                    id: id_btn_ai_black
+                    pos_hint: {"center_x": .875, "center_y": .25}
+                    icon: "robot-happy-outline"
+                    icon_size: "28sp"
+                    theme_icon_color: "Custom"
+                    icon_color: "black"
+                    rounded_button:True
+                    on_release: app.ai_go_black()
+
+                #MDIconButton:
+                #    id: id_btn_info
+                #    pos_hint: {"center_x": .875, "center_y": .45}
+                #    icon: "information-outline"
+                #    icon_size: "28sp"
+                #    theme_icon_color: "Custom"
+                #    icon_color: app.theme_cls.primary_color
+                #    on_release: app.info()
+
+                
+                

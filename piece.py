@@ -2,7 +2,7 @@
 Author: Paoger
 Date: 2023-11-06 16:33:03
 LastEditors: Paoger
-LastEditTime: 2023-12-05 16:20:40
+LastEditTime: 2024-02-06 14:00:07
 Description: 
 
 Copyright (c) 2023 by Paoger, All Rights Reserved. 
@@ -12,9 +12,9 @@ class Piece:
     #棋子Widget
     pieceWidget = None
 
-    #阵营，红：r，黑：b
+    #阵营，红：w，黑：b
     camp = None
-    #棋子标识符，车：ju，马：ma，象：xiang，士：shi，帅(将)：shuai，炮：pao，兵（卒）：bing
+    #棋子标识符，车：r，马：n，象：b，士：a，帅(将)：k，炮：c，兵（卒）：p
     #决定走子规则
     identifier = None
 
@@ -44,7 +44,7 @@ class Piece:
 
         moveName = ""
 
-        if self.camp == 'r':#红方
+        if self.camp == 'w':#红方
             moveName = f"红"
             #判断该子前后是否有相同的棋子
             for yy in range(0,9,1):#y坐标
@@ -62,7 +62,7 @@ class Piece:
                 else:
                     continue
 
-            if self.identifier == 'ju':
+            if self.identifier == 'r':
                 moveName = f"{moveName}车{9 - self.x}"
                 if end_y > self.y:
                     moveName = f"{moveName}进{end_y - self.y}"
@@ -70,25 +70,25 @@ class Piece:
                     moveName = f"{moveName}平{9 - end_x}"
                 else:
                     moveName = f"{moveName}退{self.y - end_y}"
-            elif self.identifier == 'ma':
+            elif self.identifier == 'n':
                 moveName = f"{moveName}马{9 - self.x}"
                 if end_y > self.y:
                     moveName = f"{moveName}进{9 - end_x}"
                 else:
                     moveName = f"{moveName}退{9 - end_x}"
-            elif self.identifier == 'xiang':
+            elif self.identifier == 'b':
                 moveName = f"{moveName}相{9 - self.x}"
                 if end_y > self.y:
                     moveName = f"{moveName}进{9 - end_x}"
                 else:
                     moveName = f"{moveName}退{9 - end_x}"
-            elif self.identifier == 'shi':
+            elif self.identifier == 'a':
                 moveName = f"{moveName}仕{9 - self.x}"
                 if end_y > self.y:
                     moveName = f"{moveName}进{9 - end_x}"
                 else:
                     moveName = f"{moveName}退{9 - end_x}"
-            elif self.identifier == 'shuai':
+            elif self.identifier == 'k':
                 moveName = f"{moveName}帅{9 - self.x}"
                 if end_y > self.y:
                     moveName = f"{moveName}进{end_y - self.y}"
@@ -96,7 +96,7 @@ class Piece:
                     moveName = f"{moveName}平{9 - end_x}"
                 else:
                     moveName = f"{moveName}退{self.y - end_y}"
-            elif self.identifier == 'pao':
+            elif self.identifier == 'c':
                 moveName = f"{moveName}炮{9 - self.x}"
                 if end_y > self.y:
                     moveName = f"{moveName}进{end_y - self.y}"
@@ -104,7 +104,7 @@ class Piece:
                     moveName = f"{moveName}平{9 - end_x}"
                 else:
                     moveName = f"{moveName}退{self.y - end_y}"
-            elif self.identifier == 'bing':
+            elif self.identifier == 'p':
                 moveName = f"{moveName}兵{9 - self.x}"
                 if end_y > self.y:
                     moveName = f"{moveName}进{end_y - self.y}"
@@ -129,7 +129,7 @@ class Piece:
                     continue
             
 
-            if self.identifier == 'ju':
+            if self.identifier == 'r':
                 moveName = f"{moveName}车{1 + self.x}"
                 if end_y > self.y:
                     moveName = f"{moveName}退{end_y - self.y}"
@@ -137,25 +137,25 @@ class Piece:
                     moveName = f"{moveName}平{1 + end_x}"
                 else:
                     moveName = f"{moveName}进{self.y - end_y}"
-            elif self.identifier == 'ma':
+            elif self.identifier == 'n':
                 moveName = f"{moveName}马{1 + self.x}"
                 if end_y > self.y:
                     moveName = f"{moveName}退{1 + end_x}"
                 else:
                     moveName = f"{moveName}进{1 + end_x}"
-            elif self.identifier == 'xiang':
+            elif self.identifier == 'b':
                 moveName = f"{moveName}象{1 + self.x}"
                 if end_y > self.y:
                     moveName = f"{moveName}退{1 + end_x}"
                 else:
                     moveName = f"{moveName}进{1 + end_x}"
-            elif self.identifier == 'shi':
+            elif self.identifier == 'a':
                 moveName = f"{moveName}士{1 + self.x}"
                 if end_y > self.y:
                     moveName = f"{moveName}退{1 + end_x}"
                 else:
                     moveName = f"{moveName}进{1 + end_x}"
-            elif self.identifier == 'shuai':
+            elif self.identifier == 'k':
                 moveName = f"{moveName}将{1 + self.x}"
                 if end_y > self.y:
                     moveName = f"{moveName}退{end_y - self.y}"
@@ -163,7 +163,7 @@ class Piece:
                     moveName = f"{moveName}平{1 + end_x}"
                 else:
                     moveName = f"{moveName}进{self.y - end_y}"
-            elif self.identifier == 'pao':
+            elif self.identifier == 'c':
                 moveName = f"{moveName}炮{1 + self.x}"
                 if end_y > self.y:
                     moveName = f"{moveName}退{end_y - self.y}"
@@ -171,7 +171,7 @@ class Piece:
                     moveName = f"{moveName}平{1 + end_x}"
                 else:
                     moveName = f"{moveName}进{self.y - end_y}" 
-            elif self.identifier == 'bing':
+            elif self.identifier == 'p':
                 moveName = f"{moveName}卒{1 + self.x}"
                 if end_y > self.y:
                     moveName = f"{moveName}退{end_y - self.y}"

@@ -2,14 +2,15 @@
 Author: Paoger
 Date: 2023-12-08 10:43:27
 LastEditors: Paoger
-LastEditTime: 2023-12-15 19:57:50
+LastEditTime: 2024-01-27 14:08:07
 Description: 
 
 Copyright (c) 2023 by Paoger, All Rights Reserved. 
 '''
-import platform
-pf = platform.system()
-if pf == "Windows":
+from kivy.logger import Logger
+
+from kivy.utils import platform
+if platform == "win":
     #解决windows下中文输入的候选词显示begin
     import ctypes
     from ctypes import wintypes
@@ -62,14 +63,16 @@ class Movesnote(MDTextField):
 
     def on_imc_id(self, instance, imc_id):
         self.imc_id = imc_id
-        pf = platform.system()
-        if pf == "Windows":
+        #pf = platform.system()
+        #if pf == "Windows":
+        if platform == "win":
             #绑定输入键盘事件
             self.bind(text=self.ime_press)
 
     def ime_press(self,*args):
-        pf = platform.system()
-        if pf == "Windows":
+        #pf = platform.system()
+        #if pf == "Windows":
+        if platform == "win":
             user32 = ctypes.WinDLL(name="user32")
             imm32 = ctypes.WinDLL(name="imm32")
             h_wnd = user32.GetForegroundWindow()
@@ -113,10 +116,27 @@ class Movesnote(MDTextField):
         if pf == "Windows":
             #绑定输入键盘事件
             self.bind(text=self.ime_press) """
+        
+    """ def on_touch_dowwn(self,touch):
+        if self.collide_point(*touch.pos):
+            self.pressed = touch.pos
+            if touch.is_double_tap:
+                self.on_double_tap()
+                return True
+        return super().on_touch_down(touch)
+    
+    def on_double_tap(self):
+        Logger.debug(f'X-Chess Movesnote: on_double_tap {self.readonly=}')
+        if self.readonly == True:
+            self.readonly = False """
+    
     
     def on_focus(self, instance_text_field, focus: bool) -> None:
         ret = super().on_focus(instance_text_field, focus)
         if focus == False:
+            #if platform == "android":#安卓中由于输入法会遮挡注解信息所以，需要编辑时放开编辑，否则只读
+            #    self.readonly = True
+            
             #print('User defocused')
             app = MDApp.get_running_app()
             #招法树必须先有
@@ -131,6 +151,8 @@ class Movesnote(MDTextField):
                     #print(f"before note==>{node.data['note']}")
                     #print(f"before notelen==>{notelen}")
 
+                    Logger.debug(f"X-Chess Movesnote:before note==>{node.data['note']}")
+
                     node.data['note'] = self.text
 
                     #print(f"after note==>{self.text=},{node.data['note']}")
@@ -143,6 +165,7 @@ class Movesnote(MDTextField):
                     node.data['notelen'] = notelen
 
                     #print(f"after notelen==>{notelen}")
+                    Logger.debug(f"X-Chess Movesnote:after note==>{node.data['note']}")
         
         return ret
 

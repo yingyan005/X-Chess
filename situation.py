@@ -2,7 +2,7 @@
 Author: Paoger
 Date: 2023-11-30 09:57:29
 LastEditors: Paoger
-LastEditTime: 2024-01-05 10:11:33
+LastEditTime: 2024-02-06 13:57:01
 Description: 
 
 Copyright (c) 2023 by Paoger, All Rights Reserved. 
@@ -33,7 +33,7 @@ def init_g_init_situation(init_s):
             y = xy % 10
             #print(f"{x=},{y=}")
             if i < 16:#红方棋子
-                p = Piece('r',g_const_S_P_ORDEER[i],x,y)
+                p = Piece('w',g_const_S_P_ORDEER[i],x,y)
             else: #黑方棋子
                 p = Piece('b',g_const_S_P_ORDEER[i],x,y)
             g_const_INIT_SITUATION[f'{x},{y}'] = p
@@ -60,7 +60,7 @@ def xqfinit2xchessinit(init_s,xchess_init):
             y = xy % 10
             #print(f"{x=},{y=}")
             if i < 16:#红方棋子
-                p = Piece('r',g_const_S_P_ORDEER[i],x,y)
+                p = Piece('w',g_const_S_P_ORDEER[i],x,y)
             else: #黑方棋子
                 p = Piece('b',g_const_S_P_ORDEER[i],x,y)
             xchess_init[f'{x},{y}'] = p
@@ -111,45 +111,44 @@ def check_situation(init_s):
             #if (f"{x},{y}" in init_s) and (isinstance(init_s[f'{x},{y}'],Piece)):
             if (f"{x},{y}" in init_s) and (init_s[f'{x},{y}']):
                 p = init_s[f'{x},{y}']
-                #红下黑上，暂无实现翻转
-                if p.camp == 'r':#红方
-                    if p.identifier == 'shuai':
+                if p.camp == 'w':#红方
+                    if p.identifier == 'k':
                         if p.x < 3 or p.x > 5 or p.y < 0 or p.y > 2:
                             rst['result_code'] = False
                             rst['result_desc'] = f'帅{p.camp=},{p.identifier=}不在其位((3,0) to (5,2)):{p.x=},{p.y}'
                             return rst
-                    elif p.identifier == 'shi':
+                    elif p.identifier == 'a':
                         if not ((p.x == 3 and p.y == 0) or (p.x == 5 and p.y == 0) or (p.x == 4 and p.y == 1) or (p.x == 3 and p.y == 2) or (p.x == 5 and p.y == 2)):
                             rst['result_code'] = False
                             rst['result_desc'] = f'仕{p.camp=},{p.identifier=}不在其位:{p.x=},{p.y}'
                             return rst
-                    elif p.identifier == 'xiang':
+                    elif p.identifier == 'b':
                         if not ((p.x == 2 and p.y == 0) or (p.x == 6 and p.y == 0) or (p.x == 0 and p.y == 2) or (p.x == 4 and p.y == 2) or (p.x == 8 and p.y == 2) or (p.x == 2 and p.y == 4) or (p.x == 6 and p.y == 4)):
                             rst['result_code'] = False
                             rst['result_desc'] = f'相{p.camp=},{p.identifier=}不在其位:{p.x=},{p.y}'
                             return rst
-                    elif p.identifier == 'bing':#兵不能在后方，或兵在己方横走
+                    elif p.identifier == 'p':#兵不能在后方，或兵在己方横走
                         if p.y < 3 or (p.y == 3 and (p.x == 1 or p.x == 3 or p.x == 5 or p.x == 7)) or (p.y == 4 and (p.x == 1 or p.x == 3 or p.x == 5 or p.x == 7)):
                             rst['result_code'] = False
                             rst['result_desc'] = f'兵{p.camp=},{p.identifier=}不在其位:{p.x=},{p.y}'
                             return rst
                 elif p.camp == 'b':#黑方
-                    if p.identifier == 'shuai':
+                    if p.identifier == 'k':
                         if p.x < 3 or p.x > 5 or p.y < 7 or p.y > 9:
                             rst['result_code'] = False
                             rst['result_desc'] = f'将{p.camp=},{p.identifier=}不在其位((3,7) to (5,9)):{p.x=},{p.y}'
                             return rst
-                    elif p.identifier == 'shi':
+                    elif p.identifier == 'a':
                         if not ((p.x == 3 and p.y == 9) or (p.x == 5 and p.y == 9) or (p.x == 4 and p.y == 8) or (p.x == 3 and p.y == 7) or (p.x == 5 and p.y == 7)):
                             rst['result_code'] = False
                             rst['result_desc'] = f'士{p.camp=},{p.identifier=}不在其位:{p.x=},{p.y}'
                             return rst
-                    elif p.identifier == 'xiang':
+                    elif p.identifier == 'b':
                         if not ((p.x == 2 and p.y == 9) or (p.x == 6 and p.y == 9) or (p.x == 0 and p.y == 7) or (p.x == 4 and p.y == 7) or (p.x == 8 and p.y == 7) or (p.x == 2 and p.y == 5) or (p.x == 6 and p.y == 5)):
                             rst['result_code'] = False
                             rst['result_desc'] = f'象{p.camp=},{p.identifier=}不在其位:{p.x=},{p.y}'
                             return rst
-                    elif p.identifier == 'bing':#兵不能在后方，或兵在己方横走
+                    elif p.identifier == 'p':#兵不能在后方，或兵在己方横走
                         if p.y > 6 or (p.y == 6 and (p.x == 1 or p.x == 3 or p.x == 5 or p.x == 7)) or (p.y == 5 and (p.x == 1 or p.x == 3 or p.x == 5 or p.x == 7)):
                             rst['result_code'] = False
                             rst['result_desc'] = f'卒{p.camp=},{p.identifier=}不在其位:{p.x=},{p.y}'
@@ -164,8 +163,15 @@ def check_situation(init_s):
 #转换为Fen记谱法
 "rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR w - - 0 1"
 """
-中国象棋没有“王车易位”和“吃过路兵”的着法，所以FEN格式串的这两项空缺以最初局面为例说明:
-             rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR w - - 0 1
+国际象棋的FEN格式串是由6段ASCII字符串组成的代码(彼此5个空格隔开)，这6段代码的意义依次是：
+　　(1) 棋盘上的棋子，这是FEN格式串的主要部分；
+　　(2) 轮到哪一方走子；
+　　(3) 每方及该方的王翼和后翼是否还存在“王车易位”的可能；
+　　(4) 是否存在吃过路兵的可能，过路兵是经过哪个格子的；
+　　(5) 最近一次吃子或者进兵后棋局进行的步数(半回合数)，用来判断“50回合自然限着”；
+　　(6) 棋局的回合数。
+　　中国象棋没有“王车易位”和“吃过路兵”的着法，所以FEN格式串的这两项空缺，以最初局面为例说明：
+rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR w - - 0 1
 r:黑车 n:黑马 b:黑象 a:黑士 k:黑将 c:黑炮 p:卒
 R:红车 N:红马 B:红象 A:红士 K:红将 C:红炮 P:兵
 上述局面如下
@@ -208,24 +214,24 @@ def sit2Fen(init_s):
                 p = init_s[f'{x},{y}']
 
                 fenPiece = ''
-                if p.identifier == 'ju':
+                if p.identifier == 'r':
                     fenPiece = 'r'
-                elif p.identifier == 'ma':
+                elif p.identifier == 'n':
                     fenPiece = 'n'
-                elif p.identifier == 'xiang':
+                elif p.identifier == 'b':
                     fenPiece = 'b'
-                elif p.identifier == 'shi':
+                elif p.identifier == 'a':
                     fenPiece = 'a'
-                elif p.identifier == 'shuai':
+                elif p.identifier == 'k':
                     fenPiece = 'k'
-                elif p.identifier == 'pao':
+                elif p.identifier == 'c':
                     fenPiece = 'c'
-                elif p.identifier == 'bing':
+                elif p.identifier == 'p':
                     fenPiece = 'p'
                 else:
                     fenPiece = '1'
                 
-                if p.camp == 'r':#红方
+                if p.camp == 'w':#红方
                     fenPiece = fenPiece.upper()
                 #print(f'{fenPiece}')
                 str = f'{str}{fenPiece}'
