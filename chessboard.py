@@ -2,7 +2,7 @@
 Author: Paoger
 Date: 2023-11-27 10:12:51
 LastEditors: Paoger
-LastEditTime: 2024-02-04 15:50:13
+LastEditTime: 2024-02-06 16:39:48
 Description: 
 
 Copyright (c) 2023 by Paoger, All Rights Reserved. 
@@ -10,7 +10,10 @@ Copyright (c) 2023 by Paoger, All Rights Reserved.
 import os
 
 from kivy.graphics import *
-
+from kivy.utils import platform
+from kivy.logger import Logger
+from kivy.clock import Clock
+from functools import partial
 
 from kivymd.app import MDApp
 from kivymd.toast import toast
@@ -18,9 +21,7 @@ from kivymd.uix.relativelayout import MDRelativeLayout
 from kivymd.uix.label import MDLabel
 from kivymd.utils import asynckivy
 
-from kivy.logger import Logger
-from kivy.clock import Clock
-from functools import partial
+
 
 from arrowline import Arrowline,AIArrowline
 
@@ -195,7 +196,20 @@ class Chessboard(MDRelativeLayout):
             app.selectedmask2 = SelectedMaskWidget(size_hint=(None,None),center=[-1000,-1000])
             self.add_widget(app.selectedmask2)
 
-            svg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),'img')
+            #svg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),'img')
+            pieceimg = app.cfg_info['UI']['pieceimg']
+            Logger.debug(f'X-Chess X_ChessApp build: {pieceimg=}')
+            if pieceimg == 'DIY':
+                if platform != 'android':
+                    svg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),'img')
+                else:
+                    from android.storage import primary_external_storage_path
+                    SD_CARD = primary_external_storage_path()
+                    svg_path = os.path.join(SD_CARD,'X-Chess/img')                
+            else:
+                svg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),'img')
+            
+            Logger.debug(f'X-Chess X_ChessApp build: {svg_path=}')
 
             async def onebyone(self):
                 app.root.ids['id_screenmain'].disabled = True

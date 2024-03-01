@@ -4,7 +4,7 @@
     MDGridLayout:
         #adaptive_height: True
         adaptive_size: True
-        spacing: "6dp"
+        spacing: "2dp"
         md_bg_color: app.theme_cls.primary_color
         cols:3
         rows:6
@@ -89,7 +89,7 @@
                 app.mergeXQF()
         MDRectangleFlatIconButton:
             id: id_btn_xqf2txt
-            text: "xqf=>txt"
+            text: "xqf转txt"
             icon: "text-recognition"
             theme_text_color: "Custom"
             text_color: "white"
@@ -136,9 +136,17 @@
             theme_icon_color: "Custom"
             icon_color: "orange"
             on_release: 
-                #root.manager.current_heroes = ""
-                #root.manager.current = "screenMain"
                 app.set_engine()
+        MDRectangleFlatIconButton:
+            id: id_btn_ui
+            text: "界面设置"
+            icon: "view-quilt-outline"
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "red"
+            theme_icon_color: "Custom"
+            icon_color: "orange"
+            on_release: app.set_ui()
         MDRectangleFlatIconButton:
             id: id_btn_info
             text: "关于"

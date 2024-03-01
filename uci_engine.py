@@ -499,9 +499,9 @@ currline …
             app.root.ids['id_screenmain'].ids['id_movesnote_input'].text = f'胜负已定'
             app.gameover = True
         elif matecount != None and matecount >= 1:
-            app.root.ids['id_screenmain'].ids['id_movesnote_input'].text = f'有杀 {wdl} {mate}\n{depth}'
+            app.root.ids['id_screenmain'].ids['id_movesnote_input'].text = f'有杀  {mate}\n{depth}'
         else:
-            app.root.ids['id_screenmain'].ids['id_movesnote_input'].text = f'{score} {wdl} {mate}\n{depth} {hashfull} {nps}'
+            app.root.ids['id_screenmain'].ids['id_movesnote_input'].text = f'{score}  {mate}\n{depth}'
         app.root.ids['id_screenmain'].ids['id_movesnote_input'].cancel_selection()
 
         return aimove
@@ -654,9 +654,9 @@ currline …
                 otherInf = f'胜负已定'
                 app.gameover = True
             elif matecount != None and matecount >= 1:
-                otherInf = f'有杀 {wdl} {mate} {depth}'
+                otherInf = f'有杀  {mate} {depth}'
             else:
-                otherInf = f'{depth} {pv} {score} {wdl} {mate} {hashfull} {nps}'
+                otherInf = f'{depth} {pv} {score}  {mate}'
         
             if otherInf is not None:
                 #txt = app.root.ids['id_screenmain'].ids['id_movesnote_input'].text
@@ -884,13 +884,13 @@ currline …
                 Logger.debug(f'X-Chess UCIEngine polling_aimove:go{len(self.goCount)} begin==>{last_result=}')
                 infolist = last_result.split(' ')
                 #print(f'{infolist=}')
-                score = wdl = depth =  nodes = nps = pv = mate = hashfull = ''
+                score = wdl = depth =  nodes = nps = pv = ponder = etime = mate = hashfull = ''
                 i = 0
                 matecount = None
                 for item in infolist:
                     #print(f'{item}')
                     if item == 'score': 
-                        score = f'分数{infolist[i+2]}'
+                        score = f'分{infolist[i+2]}'
                     elif item == 'wdl':
                         wdl = f'胜率{infolist[i+1]} 和率{infolist[i+2]} 负率{infolist[i+3]}'
                     elif item == 'depth':
@@ -898,9 +898,11 @@ currline …
                     elif item == 'nodes':
                         nodes = f'节点数{infolist[i+1]}'
                     elif item == 'nps':
-                        nps = f'引擎速度{infolist[i+1]}'
+                        nps = f'nps{int(infolist[i+1])/10000.0:.0f}w'
                     elif item == 'hashfull':
                         hashfull = f'Hash占用率{infolist[i+1]}'
+                    elif item == 'time':
+                        etime = f'{int(infolist[i+1])/1000.0:.1f}秒'
                     elif item == 'mate':
                         matecount = int(infolist[i+1])
                         if matecount == 0:
@@ -909,6 +911,9 @@ currline …
                             mate = f'{matecount}步成杀'
                     elif item == 'pv':
                         pv = f'{infolist[i+1]}'
+                        if len(infolist) > (i+2):                            
+                            ponder = f'{infolist[i+2]}'
+                            #Logger.debug(f'X-Chess UCIEngine polling_aimove:{ponder=}')
                     
                     i = i + 1
                 #end for item in infolist:
@@ -957,14 +962,41 @@ currline …
                         Logger.debug(f'X-Chess UCIEngine polling_aimove:onebyone end {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")} 结束本次轮询')
                         return
                     
+                    if ponder != "":
+                        ponder = ponder.replace('\n','')
+                        ponder = ponder.replace('a','0')
+                        ponder = ponder.replace('b','1')
+                        ponder = ponder.replace('c','2')
+                        ponder = ponder.replace('d','3')
+                        ponder = ponder.replace('e','4')
+                        ponder = ponder.replace('f','5')
+                        ponder = ponder.replace('g','6')
+                        ponder = ponder.replace('h','7')
+                        ponder = ponder.replace('i','8')
+                        ponder_se = list(ponder)
+                        ponder_esxy=[]
+                        for item in ponder_se:
+                            ponder_esxy.append(int(item))
+                        
+                        if (f"{ponder_esxy[0]},{ponder_esxy[1]}" in node.data['situation']) and isinstance(node.data['situation'][f'{ponder_esxy[0]},{ponder_esxy[1]}'],Piece):
+                            p = node.data['situation'][f'{ponder_esxy[0]},{ponder_esxy[1]}']
+                            if p is not None:
+                                ponder =p.getMoveName(ponder_esxy[2],ponder_esxy[3],node.data['situation'])
+                            else:
+                                Logger.debug(f'X-Chess UCIEngine polling_aimove:ponder 出错了 p is None {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")} 结束本次轮询')
+                                return
+                        else:
+                            Logger.debug(f'X-Chess UCIEngine polling_aimove:ponder 出错了 p is None  {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")} 结束本次轮询')
+                            return
+                    
                     otherInf = None
                     if matecount != None and matecount == 0:
                         otherInf = f'胜负已定'
                         app.gameover = True
                     elif matecount != None and matecount >= 1:
-                        otherInf = f'有杀 {wdl} {mate} {depth}'
+                        otherInf = f'有杀  {mate} {depth}'
                     else:
-                        otherInf = f'{depth} {pv} {score} {wdl} {mate} {hashfull} {nps}'
+                        otherInf = f'{depth} {score} {pv} {ponder} {etime} {mate} {nps}'
                 
                     if otherInf is not None:
                         txt = app.root.ids['id_screenmain'].ids['id_movesnote_input'].text
@@ -996,14 +1028,14 @@ currline …
                         app.gameover = True
                         toast("胜负已定")
                     elif matecount != None and matecount >= 1:
-                        otherInf = f'有杀 {wdl} {mate} {depth}'
+                        otherInf = f'有杀  {mate} {depth}'
                     app.root.ids['id_screenmain'].ids['id_movesnote_input'].text = f'{otherInf}' 
                     app.root.ids['id_screenmain'].ids['id_movesnote_input'].cancel_selection()
                
                 Logger.debug(f'X-Chess UCIEngine polling_aimove:go{len(self.goCount)} end==>{last_result=}')
             #end while
             txt = app.root.ids['id_screenmain'].ids['id_movesnote_input'].text
-            app.root.ids['id_screenmain'].ids['id_movesnote_input'].text = f'AI思考结束：{txt}'
+            app.root.ids['id_screenmain'].ids['id_movesnote_input'].text = f'AI思考结束：\n{txt}'
             app.root.ids['id_screenmain'].ids['id_movesnote_input'].cancel_selection()
             
             app.root.ids['id_screenmain'].ids['id_btn_analyzing'].disabled = False
@@ -1126,7 +1158,7 @@ currline …
                     if curFen != fenstr:#局面发生了变化，忽略当前info的处理
                         Logger.debug(f'X-Chess UCIEngine polling_aimove:curFen != fenstr,局面发生了变化')
                         bSituationChanged = True            
-                Logger.debug(f'X-Chess UCIEngine polling_aimove:局面是否发生了变化：{bSituationChanged}')
+                #Logger.debug(f'X-Chess UCIEngine polling_aimove:局面是否发生了变化：{bSituationChanged}')
 
                 #是否是最佳招法
                 bGetBestMove = False
@@ -1172,16 +1204,16 @@ currline …
                         return
                 
                 #下面进入局面没有发生变化的处理，显示depth中的招法或者bestmove
-                #Logger.debug(f'X-Chess UCIEngine polling_aimove:go{len(self.goCount)} begin==>{last_result=}')
+                Logger.debug(f'X-Chess UCIEngine polling_aimove:go{len(self.goCount)} begin==>{last_result=}')
                 infolist = last_result.split(' ')
                 #print(f'{infolist=}')
-                score = wdl = depth =  nodes = nps = pv = mate = hashfull = ''
+                score = wdl = depth =  nodes = nps = pv = ponder = etime = mate = hashfull = ''
                 i = 0
                 matecount = None
                 for item in infolist:
                     #print(f'{item}')
                     if item == 'score': 
-                        score = f'分数{infolist[i+2]}'
+                        score = f'分{infolist[i+2]}'
                     elif item == 'wdl':
                         wdl = f'胜率{infolist[i+1]} 和率{infolist[i+2]} 负率{infolist[i+3]}'
                     elif item == 'depth':
@@ -1189,9 +1221,11 @@ currline …
                     elif item == 'nodes':
                         nodes = f'节点数{infolist[i+1]}'
                     elif item == 'nps':
-                        nps = f'引擎速度{infolist[i+1]}'
+                        nps = f'nps{int(infolist[i+1])/10000.0:.0f}w'
                     elif item == 'hashfull':
                         hashfull = f'Hash占用率{infolist[i+1]}'
+                    elif item == 'time':
+                        etime = f'{int(infolist[i+1])/1000.0:.1f}秒'
                     elif item == 'mate':
                         matecount = int(infolist[i+1])
                         if matecount == 0:
@@ -1200,6 +1234,9 @@ currline …
                             mate = f'{matecount}步成杀'
                     elif item == 'pv':
                         pv = f'{infolist[i+1]}'
+                        if len(infolist) > (i+2):                            
+                            ponder = f'{infolist[i+2]}'
+                            #Logger.debug(f'X-Chess UCIEngine polling_aimove:{ponder=}')
                     
                     i = i + 1
                 #end for item in infolist:
@@ -1236,14 +1273,41 @@ currline …
                         Logger.debug(f'X-Chess UCIEngine polling_aimove:出错了 p is None  {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")} 结束本次轮询')
                         return
                     
+                    if ponder != "":
+                        ponder = ponder.replace('\n','')
+                        ponder = ponder.replace('a','0')
+                        ponder = ponder.replace('b','1')
+                        ponder = ponder.replace('c','2')
+                        ponder = ponder.replace('d','3')
+                        ponder = ponder.replace('e','4')
+                        ponder = ponder.replace('f','5')
+                        ponder = ponder.replace('g','6')
+                        ponder = ponder.replace('h','7')
+                        ponder = ponder.replace('i','8')
+                        ponder_se = list(ponder)
+                        ponder_esxy=[]
+                        for item in ponder_se:
+                            ponder_esxy.append(int(item))
+                        
+                        if (f"{ponder_esxy[0]},{ponder_esxy[1]}" in node.data['situation']) and isinstance(node.data['situation'][f'{ponder_esxy[0]},{ponder_esxy[1]}'],Piece):
+                            p = node.data['situation'][f'{ponder_esxy[0]},{ponder_esxy[1]}']
+                            if p is not None:
+                                ponder =p.getMoveName(ponder_esxy[2],ponder_esxy[3],node.data['situation'])
+                            else:
+                                Logger.debug(f'X-Chess UCIEngine polling_aimove:ponder 出错了 p is None {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")} 结束本次轮询')
+                                return
+                        else:
+                            Logger.debug(f'X-Chess UCIEngine polling_aimove:ponder 出错了 p is None  {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")} 结束本次轮询')
+                            return
+                    
                     otherInf = None
                     if matecount != None and matecount == 0:
                         otherInf = f'胜负已定'
                         app.gameover = True
                     elif matecount != None and matecount >= 1:
-                        otherInf = f'有杀 {wdl} {mate} {depth}'
+                        otherInf = f'有杀  {mate} {depth}'
                     else:
-                        otherInf = f'{depth} {pv} {score} {wdl} {mate} {hashfull} {nps}'
+                        otherInf = f'{depth} {score} {pv} {ponder} {etime} {mate} {nps}'
                 
                     if otherInf is not None:
                         #txt = app.root.ids['id_screenmain'].ids['id_movesnote_input'].text
@@ -1278,14 +1342,14 @@ currline …
                         app.gameover = True
                         toast("胜负已定")
                     elif matecount != None and matecount >= 1:
-                        otherInf = f'有杀 {wdl} {mate} {depth}'
+                        otherInf = f'有杀  {mate} {depth}'
                     app.root.ids['id_screenmain'].ids['id_movesnote_input'].text = f'{otherInf}' 
                     app.root.ids['id_screenmain'].ids['id_movesnote_input'].cancel_selection()
                 
                 Logger.debug(f'X-Chess UCIEngine polling_aimove:go{len(self.goCount)} end==>{last_result=}')
             #end while
             txt = app.root.ids['id_screenmain'].ids['id_movesnote_input'].text
-            app.root.ids['id_screenmain'].ids['id_movesnote_input'].text = f'AI思考结束：{txt}'
+            app.root.ids['id_screenmain'].ids['id_movesnote_input'].text = f'AI思考结束：\n{txt}'
             app.root.ids['id_screenmain'].ids['id_movesnote_input'].cancel_selection()
 
             Logger.debug(f'X-Chess UCIEngine polling_aimove:onebyone end {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")} 结束本次轮询')
@@ -1492,6 +1556,17 @@ currline …
                 esxy=[]
                 for item in se:
                     esxy.append(int(item))
+                
+                if (f"{esxy[0]},{esxy[1]}" in node.data['situation']) and isinstance(node.data['situation'][f'{esxy[0]},{esxy[1]}'],Piece):
+                    p = node.data['situation'][f'{esxy[0]},{esxy[1]}']
+                    if p is not None:
+                        pv =p.getMoveName(esxy[2],esxy[3],node.data['situation'])
+                    else:
+                        Logger.debug(f'X-Chess UCIEngine go_bestmove:出错了 p is None {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")} 结束本次轮询')
+                        return
+                else:
+                    Logger.debug(f'X-Chess UCIEngine go_bestmove:出错了 p is None  {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")} 结束本次轮询')
+                    return
                     
                 otherInf = None
                 if matecount != None and matecount == 0:
@@ -1499,9 +1574,9 @@ currline …
                     app.gameover = True
                     toast("胜负已定")
                 elif matecount != None and matecount >= 1:
-                    otherInf = f'有杀 {wdl} {mate} {depth}'
+                    otherInf = f'有杀  {mate} {depth}'
                 else:
-                    otherInf = f'{depth} {pv} {score} {wdl} {mate} {hashfull} {nps}'
+                    otherInf = f'{depth} {pv} {score}  {mate}'
                 app.root.ids['id_screenmain'].ids['id_movesnote_input'].text = f'{otherInf}'
                 app.root.ids['id_screenmain'].ids['id_movesnote_input'].cancel_selection() 
 
@@ -1539,7 +1614,7 @@ currline …
                     app.gameover = True
                     toast("胜负已定")
                 elif matecount != None and matecount >= 1:
-                    otherInf = f'有杀 {wdl} {mate} {depth}'
+                    otherInf = f'有杀  {mate} {depth}'
                 app.root.ids['id_screenmain'].ids['id_movesnote_input'].text = f'{otherInf}'
                 app.root.ids['id_screenmain'].ids['id_movesnote_input'].cancel_selection() 
 

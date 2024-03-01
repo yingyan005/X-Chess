@@ -2,7 +2,7 @@
 Author: Paoger
 Date: 2023-10-30 10:18:15
 LastEditors: Paoger
-LastEditTime: 2024-02-05 17:52:01
+LastEditTime: 2024-02-07 09:03:00
 Description: 
 
 Copyright (c) 2023 by Paoger, All Rights Reserved. 
@@ -83,7 +83,7 @@ if platform == "win" or platform == "linux":
     Config.set('graphics', 'fullscreen', 0)
 
     # 720 * 324 主要用来调界面，这个比例与手机1600*720一致
-    Config.set('graphics', 'width', '324')
+    Config.set('graphics', 'width', '350')
     Config.set('graphics', 'height', '720')
     #将窗口设置为全屏，便于获取屏幕分辨率
     #Config.set('graphics', 'fullscreen', 1)

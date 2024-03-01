@@ -2,7 +2,7 @@
 Author: Paoger
 Date: 2023-12-15 14:12:43
 LastEditors: Paoger
-LastEditTime: 2024-01-27 09:31:04
+LastEditTime: 2024-02-07 08:37:39
 Description: 
 
 Copyright (c) 2023 by Paoger, All Rights Reserved. 
@@ -43,4 +43,7 @@ class ScreenWelcome(MDScreen):
     pass
 
 class ScreenInputInfo(MDScreen):
+    pass
+
+class ScreenSetUI(MDScreen):
     pass

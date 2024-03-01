@@ -2,7 +2,7 @@
  * @Author: Paoger
  * @Date: 2024-01-03 10:22:01
  * @LastEditors: Paoger
- * @LastEditTime: 2024-02-04 16:27:14
+ * @LastEditTime: 2024-02-07 09:55:52
  * @Description: 
  * 
  * Copyright (c) 2024 by Paoger, All Rights Reserved. 
@@ -26,9 +26,9 @@
     XQF解密格式
     支持开局库
 
-## 版本0.11
-        调整主界面
-        完美支持分屏        
+## 版本0.12
+        支持自定义背景
+        有限支持自定义棋子       
 
 ## 使用说明
 ### windows环境
@@ -48,6 +48,9 @@
    
 
 #  历史版本
+## 版本0.11
+    调整主界面
+    完美支持分屏 
 ## 版本0.10
     增大棋子、棋盘
     增加AI无限分析功能

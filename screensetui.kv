@@ -1,0 +1,39 @@
+<ScreenSetUI>:
+    name: "screenSetUI"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing:16
+        MDBoxLayout:#占位
+            size_hint_y:.6
+        MDRelativeLayout:
+            size_hint_y:.3
+            MDLabel:
+                pos_hint: {'center_x': .25, 'center_y': .75}
+                text:'用自定义背景图'
+                halign:"center"
+            MDSwitch:
+                id:id_sw_bkimg
+                pos_hint: {'center_x': .55, 'center_y': .70}
+                active:False
+            MDLabel:
+                pos_hint: {'center_x': .25, 'center_y': .5}
+                text:'使用自定义棋子'
+                halign:"center"
+            MDSwitch:
+                id:id_sw_piece
+                pos_hint: {'center_x': .55, 'center_y': .45}
+                active:False 
+        MDRelativeLayout:
+            size_hint_y:.1
+            orientation: "horizontal"
+            MDRectangleFlatButton:
+                pos_hint:{"center_x": .25, "center_y": .5}
+                text: "保存"
+                theme_text_color: "Custom"
+                text_color: "orange"
+                on_release:app.save_ui_settings()
+            MDRectangleFlatButton:
+                pos_hint:{"center_x": .75, "center_y": .5}
+                text: "返回"
+                on_release:app.back_mainScreen()

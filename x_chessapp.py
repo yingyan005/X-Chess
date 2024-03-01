@@ -2,7 +2,7 @@
 Author: Paoger
 Date: 2023-11-23 16:21:31
 LastEditors: Paoger
-LastEditTime: 2024-02-06 13:12:54
+LastEditTime: 2024-02-10 20:30:16
 Description: 
 
 Copyright (c) 2024 by Paoger, All Rights Reserved. 
@@ -79,7 +79,7 @@ from selectfile import toUperLevelDirWithFile
 from selectpath import toUperLevelDir
 from situation import print_situation,sit2Fen
 
-from xqlight_ai import XQlight_moves
+#from xqlight_ai import XQlight_moves
 from uci_engine import UCIEngine
 
 Logger.info('X-Chess X_ChessApp: This is a info message:X_ChessApp will run.')
@@ -254,7 +254,7 @@ class X_ChessApp(MDApp):
 
         mainbgimg = self.cfg_info['UI']['mainbgimg']
         Logger.debug(f'X-Chess X_ChessApp build: {mainbgimg=}')
-        if mainbgimg is not None:
+        if mainbgimg == 'DIY':
             mainbgimg_fn = None
             if platform != 'android':
                 mainbgimg_fn = os.path.join(os.getcwd(),'img/background.png')
@@ -2015,10 +2015,13 @@ QQ群：780150228
 待实现：
         XQF解密格式
         支持开局库
-版本0.11
+版本0.12 棋乐融融版
+    支持自定义背景
+    有限支持自定义棋子 
+版本0.11 棋如人生版
     调整主界面
     完美支持分屏
-版本0.10
+版本0.10 棋如人生版
     增大棋子、棋盘
     增加AI无限分析功能
     主题改为有深意的dark模式，不刺眼 
@@ -2867,8 +2870,6 @@ QQ群：780150228
         self.root.ids['id_screensetengine'].ids.id_uci_engine_filename.text = engine_settings['engine_filename']
         self.root.ids['id_screensetengine'].ids.id_uci_options.text = options
 
-        Logger.debug(f"X-Chess x-chessapp set_engine: 333")
-
         self.root.current_heroes = ""
         self.root.current = "screenSetEngine"
 
@@ -3141,6 +3142,51 @@ QQ群：780150228
             self.root.ids['id_screenmain'].ids.id_chessboard.red_bottom = True
         
         self.root.ids['id_screenmain'].ids.id_chessboard.bottom2top(curSit)
+    
+    def set_ui(self):
+        Logger.debug(f"X-Chess x-chessapp set_ui: begin")
+
+        Logger.debug(f"X-Chess X_ChessApp set_ui: {self.cfg_info['UI']['mainbgimg']=}")
+        if self.cfg_info['UI']['mainbgimg'] == 'DIY':
+            self.root.ids['id_screensetui'].ids['id_sw_bkimg'].active = True
+        else:
+            self.root.ids['id_screensetui'].ids['id_sw_bkimg'].active = False
+        
+        Logger.debug(f"X-Chess X_ChessApp set_ui: {self.cfg_info['UI']['pieceimg']=}")
+        if self.cfg_info['UI']['pieceimg'] == 'DIY':
+            self.root.ids['id_screensetui'].ids['id_sw_piece'].active = True
+        else:
+            self.root.ids['id_screensetui'].ids['id_sw_piece'].active = False
+
+        self.root.current_heroes = ""
+        self.root.current = "screenSetUI"
+
+        Logger.debug(f"X-Chess x-chessapp set_ui: end")
+    
+    def save_ui_settings(self):
+        Logger.debug(f'X-Chess save_ui_settings: begin')
+
+        self.cfg_info.read(self.cfgFileName,encoding='gbk')
+
+        if self.root.ids['id_screensetui'].ids['id_sw_bkimg'].active == True:
+            Logger.debug(f"X-Chess save_ui_settings: 背景图片：使用自定义图片")
+            self.cfg_info.set("UI",'mainbgimg',"DIY")
+        else:
+            Logger.debug(f"X-Chess save_ui_settings: 背景图片：使用系统图片")
+            self.cfg_info.set("UI",'mainbgimg',"")
+        
+        if self.root.ids['id_screensetui'].ids['id_sw_piece'].active == True:
+            Logger.debug(f"X-Chess save_ui_settings: 棋子图片：使用自定义图片")
+            self.cfg_info.set("UI",'pieceimg',"DIY")
+        else:
+            Logger.debug(f"X-Chess save_ui_settings: 棋子图片：使用系统图片")
+            self.cfg_info.set("UI",'pieceimg',"")
+        
+        self.cfg_info.write(open(self.cfgFileName,'w',encoding='gbk'))
+
+        toast("重启后生效")        
+
+        Logger.debug(f'X-Chess save_ui_settings: end')
 
     
 
